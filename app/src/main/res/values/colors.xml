@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#363636</color>
+    <color name="colorPrimaryDark">#363636</color>
+    <color name="colorAccent">#25cc8c</color>
+    <color name="background">#101010</color>
+    <color name="post_header">#0770A2</color>
+    <color name="post_placeholder">#D9E8F5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="btn_add">#304269</color>
+</resources>

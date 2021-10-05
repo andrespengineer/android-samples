@@ -1,0 +1,28 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="TitleAppearance" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/lilyscript</item>
+    </style>
+
+    <style name="Ubuntu.Light" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/ubuntu_light</item>
+    </style>
+
+    <style name="Ubuntu.Medium" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/ubuntu_medium</item>
+    </style>
+
+    <style name="Ubuntu.Bold" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/ubuntu_bold</item>
+    </style>
+
+</resources>

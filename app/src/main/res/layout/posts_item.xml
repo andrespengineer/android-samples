@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_10dp"
+    android:background="@color/background"
+    android:layout_marginBottom="@dimen/margin_10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPostHeaderContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="@dimen/margin_10dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent=".1">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivPostItemProfile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="@dimen/thickness_2dp"
+            app:layout_constraintDimensionRatio="h, 1:1"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            style="@style/Ubuntu.Light"
+            android:id="@+id/tvPostItemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/ivPostItemProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvPostItemLocation"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="@android:string/unknownName"
+            android:textSize="14sp"
+            android:layout_marginStart="@dimen/margin_10dp"
+            android:layout_marginEnd="@dimen/margin_10dp"
+            />
+
+        <TextView
+            style="@style/Ubuntu.Light"
+            android:id="@+id/tvPostItemLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/tvPostItemName"
+            app:layout_constraintEnd_toEndOf="@+id/tvPostItemName"
+            app:layout_constraintTop_toBottomOf="@+id/tvPostItemName"
+            app:layout_constraintVertical_bias="0"
+            android:text="@android:string/dialog_alert_title"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="12sp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPostMainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:layout_marginBottom="@dimen/margin_10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toBottomOf="@id/clPostHeaderContainer"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/ivPostItem"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@color/background"
+            app:layout_constraintDimensionRatio="h, 1:1"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavLikeAnimation"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintWidth_percent=".3"
+            app:layout_constraintHeight_percent=".3"
+            app:lottie_loop="false"
+            app:lottie_autoPlay="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPostFooterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clPostMainContainer">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavLike"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:lottie_rawRes="@raw/like_enabled_disabled"
+            app:lottie_progress="0"
+            app:layout_constraintWidth_percent=".12"
+            app:lottie_loop="false"
+            app:lottie_autoPlay="false"
+            app:layout_constraintDimensionRatio="h, 1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvPostItemDescription"/>
+        <TextView
+            style="@style/Ubuntu.Medium"
+            android:id="@+id/tvPostItemLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/lavLike"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/lavLike"
+            app:layout_constraintBottom_toTopOf="@id/tvPostItemDescription"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
+        <TextView
+            style="@style/Ubuntu.Light"
+            android:id="@+id/tvPostItemDescription"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="@dimen/margin_10dp"
+            app:layout_constraintStart_toStartOf="@+id/lavLike"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lavLike"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:maxLines="5"
+            android:textColor="@color/white"
+            android:textSize="13sp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

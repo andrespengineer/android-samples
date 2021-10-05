@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_15dp">15dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
+
+    <!-- Thickness -->
+    <dimen name="thickness_2dp">2dp</dimen>
+    <dimen name="thickness_3dp">3dp</dimen>
+    <dimen name="thickness_4dp">4dp</dimen>
+    <dimen name="thickness_10dp">10dp</dimen>
+    <dimen name="thickness_15dp">15dp</dimen>
+    <dimen name="thickness_20dp">20dp</dimen>
+</resources>
