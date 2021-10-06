@@ -18,3 +18,11 @@ Architectures: [MVVM](https://developer.android.com/jetpack/guide?gclid=CjwKCAjw
 10. [Lottie Animations](https://github.com/airbnb/lottie-android) for Android.
 11. [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) transitions.
 12. [Glide](https://github.com/bumptech/glide) & Image Processing.
+
+# Project Samples
+
+| Project  | Link |
+| ------------- | ------------- |
+| Instagram Like Simple UI  | [Here](https://github.com/andrespengineer/Android-Samples/tree/hilt_mvp#summary)  |
+| Bar Social Network App  | coming soon!  |
+
