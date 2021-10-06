@@ -1,20 +1,20 @@
-# Android-Samples
+# *Instagram Like* Simple UI
 
-**Android-Samples** is a project to show different architectural approaches, SOLID Principles and clean code applied to exercises and new projections to develop Kotlin Android applications. In its different branches you will find different types of Android applications.  
+## Summary
 
-Architectures: [MVVM](https://developer.android.com/jetpack/guide?gclid=CjwKCAjw7--KBhAMEiwAxfpkWARBM3vubBOpHHvULyoTy68qjoheC-wESXngfHpfNe6P6Q45062M9RoCSaIQAvD_BwE&gclsrc=aw.ds), [MVP](https://www.raywenderlich.com/7026-getting-started-with-mvp-model-view-presenter-on-android) and [MVI](https://blog.mindorks.com/mvi-architecture-android-tutorial-for-beginners-step-by-step-guide).
+This [Android-Sample](https://github.com/andrespengineer/Android-Samples/) is written in Kotlin and using the [MVP](https://www.raywenderlich.com/7026-getting-started-with-mvp-model-view-presenter-on-android) Architecture and Components:
 
-  You will find practice projects that use the latest trends on Android, such as:
 
 1. [Hilt for Android](https://developer.android.com/training/dependency-injection/hilt-android).
-2. Kotlin [Coroutines](https://developer.android.com/kotlin/coroutines) for background operations. 
-3. [Paging](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) for RecyclerView. 
-4. Reactive UI used by [LiveData](https://developer.android.com/topic/libraries/architecture/livedata), [Flows](https://developer.android.com/kotlin/flow), StateFlows and others.
-5. [DiffUtil](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil) and [AsyncListDiffer](https://developer.android.com/reference/androidx/recyclerview/widget/AsyncListDiffer) for RecyclerView Adapters.
-6. Schedule Tasks with [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager), [Workers](https://developer.android.com/reference/androidx/work/Worker) and [CoroutineWorkers](https://developer.android.com/topic/libraries/architecture/workmanager/advanced/coroutineworker).
-7. Instrumentation tests and unit tests with [Hilt Testing](https://developer.android.com/training/dependency-injection/hilt-testing).
-8. Responsive UI Designs for different screen orientations.
-9. New [CameraX](https://developer.android.com/training/camerax) Api.
-10. [Lottie Animations](https://github.com/airbnb/lottie-android) for Android.
-11. [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) transitions.
-12. [Glide](https://github.com/bumptech/glide) & Image Processing.
+2. [DiffUtil](https://developer.android.com/reference/androidx/recyclerview/widget/DiffUtil) for RecyclerView Adapters.
+3. Instrumentation tests and unit tests with [Hilt Testing](https://developer.android.com/training/dependency-injection/hilt-testing).
+4. Responsive UI Designs.
+5. [Lottie Animations](https://github.com/airbnb/lottie-android) for Android.
+6. [Glide](https://github.com/bumptech/glide) & Image Processing.
+7. BaseClass & Anti-Patterns
+
+## Preview
+
+
+https://user-images.githubusercontent.com/8463089/136123843-5a08e4db-edbb-4081-a561-e5efe9446fbd.mp4
+
