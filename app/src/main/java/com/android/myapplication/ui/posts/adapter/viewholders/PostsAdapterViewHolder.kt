@@ -9,7 +9,6 @@ import android.text.style.StyleSpan
 import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.model.layer.Layer
 import com.android.myapplication.R
 import com.android.myapplication.ui.posts.adapter.PostsAdapter
 import com.android.myapplication.ui.posts.adapter.viewholders.contracts.PostsViewHolderContract
@@ -36,7 +35,7 @@ class PostsAdapterViewHolder constructor(val binding: PostsItemBinding, adapter:
                 binding.lavLikeAnimation.visibility = View.GONE
                 binding.lavLikeAnimation.cancelAnimation()
                 binding.lavLikeAnimation.setOnTouchListenerWithoutPerformClick(this@PostsAdapterViewHolder)
-                notifyLike(liked = model!!.liked.not(), animated = false)
+                notifyLike(liked = model.liked.not(), animated = false)
             }, 100)
 
         }
@@ -51,26 +50,25 @@ class PostsAdapterViewHolder constructor(val binding: PostsItemBinding, adapter:
     }
 
     private fun notifyLike(liked: Boolean, animated: Boolean) {
-        if (bindingAdapterPosition != RecyclerView.NO_POSITION && model!!.liked != liked) {
+
+        model.setPostLikes(model.getPostLikes().toInt().plus(if (model.liked.not()) 1 else -1).toString())
+
+        if (bindingAdapterPosition != RecyclerView.NO_POSITION && model.liked != liked) {
             if(animated) {
                 binding.lavLike.progress = if (liked) 0f else 1f
                 binding.lavLike.speed = if (liked) 1f else -1f
-                binding.lavLike.playAnimation()
+                binding.lavLike.postDelayed({binding.lavLike.playAnimation()}, 300);
             }
             else {
                 binding.lavLike.progress = if (liked) 1f else 0f
                 binding.lavLike.speed = if (liked) -1f else 1f
             }
 
-            model!!.liked = liked
+            model.liked = liked
         }
 
-        if(animated || model!!.liked.not()) {
-            model!!.setPostLikes(
-                model!!.getPostLikes().toInt().plus(if (liked) 1 else -1).toString()
-            )
-        }
-        binding.tvPostItemLikes.text = model!!.getPostLikes()
+
+        binding.tvPostItemLikes.text = model.getPostLikes()
     }
 
     override fun onBind(model: Post) {
@@ -79,7 +77,7 @@ class PostsAdapterViewHolder constructor(val binding: PostsItemBinding, adapter:
         binding.tvPostItemLikes.text = model.getPostLikes()
 
         val spanned = SpannableString(model.username + " " + model.postDescription)
-        spanned.setSpan(StyleSpan(Typeface.BOLD), 0, model.username!!.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+        spanned.setSpan(StyleSpan(Typeface.BOLD), 0, model.username.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
         spanned.setSpan(RelativeSizeSpan(.97f), model.username.length, spanned.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
 
         binding.tvPostItemDescription.setText(spanned, TextView.BufferType.SPANNABLE)
@@ -126,7 +124,7 @@ class PostsAdapterViewHolder constructor(val binding: PostsItemBinding, adapter:
 
     override fun onLikePost() {
         if (binding.lavLikeAnimation.composition == null) {
-            binding.lavLikeAnimation.setComposition(adapter.lottieComposition)
+            binding.lavLikeAnimation.setComposition(adapter.lottieLikeAnimationComposition)
         }
 
         showLikeAnimation()
@@ -143,7 +141,7 @@ class PostsAdapterViewHolder constructor(val binding: PostsItemBinding, adapter:
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.lavLike -> notifyLike(liked = model!!.liked.not(), animated = true)
+            R.id.lavLike -> notifyLike(liked = model.liked.not(), animated = true)
         }
     }
 

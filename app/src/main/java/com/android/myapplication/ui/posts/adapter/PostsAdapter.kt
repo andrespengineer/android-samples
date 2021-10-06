@@ -1,9 +1,12 @@
 package com.android.myapplication.ui.posts.adapter
 
+import android.text.Editable
+import android.text.style.MetricAffectingSpan
 import com.android.myapplication.base.BaseAdapter
 import com.android.myapplication.databinding.PostsItemBinding
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.text.getSpans
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieComposition
@@ -18,7 +21,7 @@ import java.util.*
 open class PostsAdapter : BaseAdapter<Post, PostsAdapterViewHolder>() {
 
     private val mItems: MutableList<Post> = ArrayList()
-    var lottieComposition = LottieComposition()
+    internal var lottieLikeAnimationComposition = LottieComposition()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostsAdapterViewHolder {
         return PostsAdapterViewHolder(PostsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false), this)
@@ -44,7 +47,7 @@ open class PostsAdapter : BaseAdapter<Post, PostsAdapterViewHolder>() {
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         val factory = LottieCompositionFactory.fromRawRes(recyclerView.context, R.raw.liked)
-        factory.addListener { composition: LottieComposition -> lottieComposition = composition }
+        factory.addListener { composition: LottieComposition -> lottieLikeAnimationComposition = composition }
     }
 
     override fun onViewRecycled(holder: PostsAdapterViewHolder) {
@@ -52,7 +55,11 @@ open class PostsAdapter : BaseAdapter<Post, PostsAdapterViewHolder>() {
         holder.cancelLikeAnimation()
         Glide.with(holder.binding.root.context).clear(holder.binding.ivPostItem)
         Glide.with(holder.binding.root.context).clear(holder.binding.ivPostItemProfile)
-        if (holder.binding.tvPostItemDescription.editableText != null)
-            holder.binding.tvPostItemDescription.editableText.clearSpans()
+        val editable: Editable? = holder.binding.tvPostItemDescription.editableText
+        val metricAffectingSpan: Array<out MetricAffectingSpan> = editable?.getSpans(0, editable.length)
+                ?: arrayOf()
+        for(i in 0..metricAffectingSpan.size) {
+            editable?.removeSpan(metricAffectingSpan[i])
+        }
     }
 }

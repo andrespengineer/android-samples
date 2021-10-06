@@ -6,7 +6,7 @@ import java.io.Serializable
 
 data class Post(val userId: Long,
                 val postId: Long,
-                val username: String?,
+                val username: String,
                 val profilePicture: String?,
                 val postPicture: String?,
                 val postLocation: String?,
