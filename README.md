@@ -17,7 +17,7 @@ Architectures: [MVVM](https://developer.android.com/jetpack/guide?gclid=CjwKCAjw
 9. New [CameraX](https://developer.android.com/training/camerax) Api.
 10. [Lottie Animations](https://github.com/airbnb/lottie-android) for Android.
 11. [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) transitions.
-12. [Glide](https://github.com/bumptech/glide) & Image Processing.
+12. [Glide](https://github.com/bumptech/glide) | [Coil](https://github.com/coil-kt/coil) Image Processing.
 
 # Project Samples
 
