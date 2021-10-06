@@ -35,7 +35,7 @@ class PostsFragmentTest {
     fun likePost(){
         runBlocking {
             delay(4000)
-            onView(withId(R.id.fragmentPosts)).perform(doubleClick())
+            onView(withId(R.id.lavLike)).perform(click())
             onView(withId(R.id.lavLikeAnimation)).check(ViewAssertions.matches(withEffectiveVisibility(Visibility.VISIBLE)))
         }
     }

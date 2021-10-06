@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/margin_5dp"
-    android:background="@color/background"
     android:layout_marginBottom="@dimen/margin_10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,7 +70,6 @@
         android:id="@+id/clPostMainContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background"
         android:layout_marginBottom="@dimen/margin_10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +110,6 @@
         android:id="@+id/clPostFooterContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clPostMainContainer">

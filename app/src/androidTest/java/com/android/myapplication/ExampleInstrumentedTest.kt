@@ -1,6 +1,10 @@
 package com.android.myapplication
 
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingPolicies
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.platform.app.InstrumentationRegistry
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -42,8 +46,8 @@ class HomeActivityTest {
     fun isHomeActivityVisible() {
         runBlocking {
             delay(5000)
-            //onView(withId(R.id.fragmentPosts)).check(ViewAssertions.matches(isDisplayed()))
-            //onView(withId(R.id.fragmentStories)).check(ViewAssertions.matches(isDisplayed()))
+            onView(withId(R.id.fragmentPosts)).check(ViewAssertions.matches(isDisplayed()))
+            onView(withId(R.id.fragmentStories)).check(ViewAssertions.matches(isDisplayed()))
         }
     }
 }

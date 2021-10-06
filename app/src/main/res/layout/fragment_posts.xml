@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.recyclerview.widget.RecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/background"
+    android:id="@+id/rvPosts"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPosts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/posts_item"
-        tools:itemCount="10"
-        android:overScrollMode="always"/>
-</FrameLayout>
+    android:layout_height="wrap_content"
+    tools:listitem="@layout/posts_item"
+    tools:itemCount="10"
+    android:overScrollMode="always"
+    android:background="@color/background"/>
