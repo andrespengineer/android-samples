@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_20dp">
+
+    <TextView
+        android:id="@+id/tvChatTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_28sp"
+        android:text="@string/menu_chat"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/margin_20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rvChatMessagesList"/>
+
+
+    <EditText
+        android:id="@+id/etChatInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:padding="15dp"
+        android:gravity="start"
+        android:inputType="textCapSentences|textMultiLine"
+        android:textSize="14sp"
+        android:background="@drawable/shape_corner_radius"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnChatSend"
+        android:hint="@string/write_message"
+        android:importantForAutofill="no" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnChatSend"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:padding="@dimen/margin_10dp"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_send"
+        app:tint="?attr/colorOnSurface"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintTop_toTopOf="@id/etChatInput"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/etChatInput"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChatMessagesList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_10dp"
+        app:layout_constraintTop_toBottomOf="@id/tvChatTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/etChatInput"
+        app:stackFromEnd="true"
+        app:reverseLayout="false"/>
+
+    <ImageButton
+        android:id="@+id/ibScrollToBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_drop_down"
+        android:rotation="90"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:layout_margin="@dimen/margin_20dp"
+        android:padding="@dimen/margin_10dp"
+        android:visibility="gone"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/rvChatMessagesList"
+        app:layout_constraintEnd_toEndOf="@id/rvChatMessagesList"
+        tools:visibility="visible"
+        android:contentDescription="@string/scroll_to_bottom"
+        app:tint="?attr/colorOnSurface" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

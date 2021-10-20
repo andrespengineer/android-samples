@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivPlaylistSongImage"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintWidth_percent=".2"
+        app:layout_constraintDimensionRatio="h, 1:1"
+        app:layout_constraintEnd_toStartOf="@id/tvPlaylistSongName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Image.PILL"/>
+
+        <TextView
+            android:id="@+id/tvPlaylistSongName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_16sp"
+            android:textStyle="bold"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:layout_marginStart="@dimen/margin_14dp"
+            app:layout_constraintBottom_toTopOf="@id/tvPlaylistSongArtist"
+            app:layout_constraintTop_toTopOf="@id/ivPlaylistSongImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivPlaylistSongImage"/>
+
+        <TextView
+            android:id="@+id/tvPlaylistSongArtist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="@dimen/margin_8dp"
+            app:layout_constraintBottom_toBottomOf="@id/ivPlaylistSongImage"
+            app:layout_constraintTop_toBottomOf="@id/tvPlaylistSongName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvPlaylistSongName"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

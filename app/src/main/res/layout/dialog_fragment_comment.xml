@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/rlItemBarContainer"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@drawable/navigation_view_selector"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp">
+
+    <TextView
+        android:id="@+id/tvPostContentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="@string/post_content_caption"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btnPostContentClearText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_alignParentEnd="true"
+        android:textAllCaps="false"
+        android:text="@string/post_content_clear_text"
+        android:textSize="14sp"
+        android:layout_marginTop="5dp"/>
+
+    <EditText
+        android:id="@+id/etPostContentDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="200dp"
+        android:maxLength="250"
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:textSize="18sp"
+        android:layout_below="@id/tvPostContentTitle"
+        android:hint="@string/comment_dialog_write"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

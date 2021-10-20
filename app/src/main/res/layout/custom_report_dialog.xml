@@ -1,0 +1,137 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlItemBarContainer"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minWidth="280dp"
+        android:background="@drawable/navigation_view_selector"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/custom_report_title"
+            android:layout_marginStart="15dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlFirst_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <RadioButton
+            android:id="@+id/rb_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="?attr/colorPrimary"
+            android:checked="false" />
+
+        <TextView
+            android:id="@+id/tvFirst_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/report_post_first"
+            android:layout_toEndOf="@id/rb_first"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rlSecond_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <RadioButton
+            android:id="@+id/rb_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="?attr/colorPrimary"
+            android:checked="false" />
+
+        <TextView
+            android:id="@+id/tvSecond_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/report_post_second"
+            android:layout_toEndOf="@id/rb_second"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rlThird_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <RadioButton
+            android:id="@+id/rb_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="?attr/colorPrimary"
+            android:checked="false" />
+
+        <TextView
+            android:id="@+id/tvThird_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/report_post_third"
+            android:layout_toEndOf="@id/rb_third"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/margin_10dp"
+            android:text="@string/action_cancel"
+            android:textAllCaps="false"
+            android:padding="10dp"
+            android:textSize="16sp"/>
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_10dp"
+            android:text="@string/action_send"
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
+

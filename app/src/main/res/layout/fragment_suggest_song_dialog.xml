@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvSuggestSongTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/suggest_song_title"
+            android:textSize="24sp"
+            android:textColor="?attr/colorOnSurface"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <EditText
+            android:id="@+id/etSuggestSongName"
+            android:background="@drawable/shape_corner_radius_suggest_song_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/suggest_song_name"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:textColorHint="@android:color/darker_gray"
+            android:layout_margin="15dp"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <EditText
+            android:id="@+id/etSuggestSongArtist"
+            android:background="@drawable/shape_corner_radius_suggest_song_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/suggest_song_artist"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:layout_margin="15dp"
+            android:textColorHint="@android:color/darker_gray"
+            android:padding="10dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btnSuggestSongCancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/suggest_song_cancel"
+                android:textAllCaps="false"
+                android:padding="10dp"
+                android:textSize="20sp"
+                style="?android:attr/buttonBarButtonStyle" />
+            <Button
+                android:id="@+id/btnSuggestSongSend"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/suggest_song_send"
+                android:padding="10dp"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                style="?android:attr/buttonBarButtonStyle" />
+        </LinearLayout>
+</LinearLayout>

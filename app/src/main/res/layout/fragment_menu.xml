@@ -1,0 +1,102 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/flMenuCategoryDrinks"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/margin_35dp"
+        app:cardElevation="@dimen/margin_20dp"
+        app:cardCornerRadius="@dimen/margin_14dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/margin_20dp"
+        app:layout_constraintBottom_toTopOf="@id/flMenuCategoryFood">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gridview_selector">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMenuCategoryDrinks"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:srcCompat="@drawable/beers"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            app:tint="?attr/colorOnBackground"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvMenuCategoryDrinks"
+            app:layout_constraintHeight_percent=".3"/>
+
+        <TextView
+            android:id="@+id/tvMenuCategoryDrinks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/StrokeText"
+            android:text="@string/menu_category_drinks"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@id/ivMenuCategoryDrinks"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/flMenuCategoryFood"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/margin_35dp"
+        android:layout_margin="@dimen/margin_20dp"
+        app:cardCornerRadius="@dimen/margin_14dp"
+        app:cardElevation="@dimen/margin_20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flMenuCategoryDrinks">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gridview_selector">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMenuCategoryFood"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:srcCompat="@drawable/dinner"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            app:tint="?attr/colorOnBackground"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvMenuCategoryFood"
+            app:layout_constraintHeight_percent=".3"/>
+
+        <TextView
+            android:id="@+id/tvMenuCategoryFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/StrokeText"
+            android:text="@string/menu_category_bite_food"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@id/ivMenuCategoryFood"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

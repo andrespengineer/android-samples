@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
+            android:text="@string/login_user"
+            android:layout_margin="10dp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/btn_options_change_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:gravity="start|center_vertical"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:background="@drawable/recyclerview_list_selector"
+            android:text="@string/options_user_change_email"/>
+
+        <Button
+            android:id="@+id/btn_options_change_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:gravity="start|center_vertical"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:background="@drawable/recyclerview_list_selector"
+            android:text="@string/options_user_change_password"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
+            android:text="@string/menu_timeline"
+            android:layout_margin="10dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
+            android:text="@string/menu_about"
+            android:textStyle="bold"
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/btn_options_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:gravity="start|center_vertical"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:background="@drawable/recyclerview_list_selector"
+            android:text="@string/options_about_help"/>
+
+        <Button
+            android:id="@+id/btn_options_suggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:gravity="start|center_vertical"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:background="@drawable/recyclerview_list_selector"
+            android:text="@string/options_about_suggestions"/>
+
+        <Button
+            android:id="@+id/btn_options_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:gravity="start|center_vertical"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:background="@drawable/recyclerview_list_selector"
+            android:text="@string/menu_log_out"/>
+
+    </LinearLayout>
+</ScrollView>
