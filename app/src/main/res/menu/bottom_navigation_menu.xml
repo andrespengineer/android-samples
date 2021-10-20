@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragment_feed"
+        android:enabled="true"
+        android:icon="@drawable/ic_feed"
+        android:title="@string/fragment_feed"/>
+
+    <item
+        android:id="@+id/fragment_chat"
+        android:enabled="true"
+        android:icon="@drawable/ic_chat"
+        android:title="@string/fragment_chat"
+        android:menuCategory="secondary"/>
+
+    <item
+        android:id="@+id/fragment_playlist"
+        android:enabled="true"
+        android:icon="@drawable/ic_playlist"
+        android:title="@string/fragment_playlist"
+        android:menuCategory="secondary"/>
+    <item
+        android:id="@+id/fragment_menu"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu"
+        android:title="@string/fragment_menu"
+        android:menuCategory="secondary"/>
+
+    <item
+        android:id="@+id/fragment_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_account"
+        android:title="@string/fragment_profile"
+        android:menuCategory="secondary"/>
+
+</menu>

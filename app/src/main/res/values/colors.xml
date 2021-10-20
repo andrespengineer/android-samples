@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#25000000</color>
+
+    <color name="light_colorPrimary">#d50000</color>
+    <color name="light_colorPrimaryVariant">#9b0000</color>
+    <color name="light_colorSecondary">#01579b</color>
+    <color name="light_colorSecondaryVariant">#002f6c</color>
+    <color name="light_colorBackground">#ffffff</color>
+    <color name="light_colorSurface">#ffffff</color>
+    <color name="light_colorPrimarySurface">?attr/colorPrimary</color>
+    <color name="light_colorError">#9c1313</color>
+    <color name="light_colorOnPrimary">#ffffff</color>
+    <color name="light_colorOnSecondary">#191919</color>
+    <color name="light_colorOnBackground">#0d0d0d</color>
+    <color name="light_colorOnSurface">#0d0d0d</color>
+    <color name="light_colorOnError">#ffffff</color>
+    <color name="light_scrimBackground">#ccffffff</color>
+    <color name="light_statusBarColor">#ccd50000</color>
+
+    <color name="night_colorPrimary">#d50000</color>
+    <color name="night_colorPrimaryVariant">#9b0000</color>
+    <color name="night_colorSecondary">#01579b</color>
+    <color name="night_colorSecondaryVariant">#002f6c</color>
+    <color name="night_colorBackground">#191919</color>
+    <color name="night_colorSurface">#191919</color>
+    <color name="night_colorPrimarySurface">?attr/colorPrimary</color>
+    <color name="night_colorError">#9c1313</color>
+    <color name="night_colorOnPrimary">#ffffff</color>
+    <color name="night_colorOnSecondary">#0d0d0d</color>
+    <color name="night_colorOnBackground">#ffffff</color>
+    <color name="night_colorOnSurface">#ffffff</color>
+    <color name="night_colorOnError">#0d0d0d</color>
+    <color name="night_scrimBackground">#ccffffff</color>
+    <color name="night_statusBarColor">#ccd50000</color>
+</resources>

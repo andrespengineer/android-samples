@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+        <item
+            android:id="@+id/timeline_edit"
+            android:title="@string/timeline_menu_edit" />
+
+        <item
+            android:id="@+id/timeline_view_full_screen"
+            android:title="@string/timeline_view_image_extended" />
+
+        <item
+        android:id="@+id/timeline_report"
+        android:title="@string/timeline_menu_report"/>
+
+        <item
+            android:id="@+id/timeline_block"
+            android:title="@string/timeline_menu_block_user" />
+
+
+</menu>

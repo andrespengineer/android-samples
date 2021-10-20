@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Social.DayNight" parent="Theme.Social.Dark" />
+
+    <style name="Theme.Social.Dark" parent="Theme.MaterialComponents">
+        <item name="colorPrimary">@color/night_colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/night_colorPrimaryVariant</item>
+        <item name="colorSecondary">@color/night_colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/night_colorSecondaryVariant</item>
+        <item name="android:colorBackground">@color/night_colorBackground</item>
+        <item name="colorSurface">@color/night_colorSurface</item>
+        <item name="colorPrimarySurface">?attr/colorPrimary</item>
+        <item name="colorError">@color/night_colorError</item>
+        <item name="colorOnPrimary">@color/night_colorOnPrimary</item>
+        <item name="colorOnSecondary">@color/night_colorOnSecondary</item>
+        <item name="colorOnBackground">@color/night_colorOnBackground</item>
+        <item name="colorOnSurface">@color/night_colorOnSurface</item>
+        <item name="colorOnError">@color/night_colorOnError</item>
+        <item name="scrimBackground">@color/night_scrimBackground</item>
+        <item name="android:statusBarColor">@color/night_statusBarColor</item>
+
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>

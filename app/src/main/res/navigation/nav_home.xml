@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/fragment_feed">
+
+    <fragment
+        android:id="@+id/fragment_feed"
+        android:name="com.social.presentation.fragments.FragmentFeed"
+        android:label="@string/fragment_chat" />
+    <fragment
+        android:id="@+id/fragment_chat"
+        android:name="com.social.presentation.fragments.FragmentChat"
+        android:label="@string/fragment_chat"/>
+    <fragment
+        android:id="@+id/fragment_playlist"
+        android:name="com.social.presentation.fragments.FragmentPlaylist"
+        android:label="@string/fragment_playlist"/>
+
+    <fragment
+        android:id="@+id/fragment_menu"
+        android:tag="@string/fragment_menu"
+        android:name="com.social.presentation.fragments.FragmentMenu"
+        android:label="@string/fragment_menu"/>
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:tag="@string/fragment_profile"
+        android:name="com.social.presentation.fragments.FragmentProfile"
+        android:label="@string/fragment_profile">
+        <action
+            android:id="@+id/action_fragment_profile_to_fragmentPreferences"
+            app:destination="@id/fragment_preferences" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_preferences"
+        android:name="com.social.presentation.fragments.FragmentPreferences"
+        android:label="FragmentPreferences">
+        <action
+            android:id="@+id/preferences_to_profile"
+            app:popUpTo="@id/fragment_profile"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+
+</navigation>

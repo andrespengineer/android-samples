@@ -1,0 +1,168 @@
+<resources>
+    <string name="app_name" translatable="false">Bar Social App</string>
+    <string name="login_user">Usuario o Correo Electronico</string>
+    <string name="login_forgot_password"><u>¿Olvidaste tu contraseña?</u></string>
+    <string name="login_access">Acceder</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_blank_field">El campo usuario o contraseña no debe estar vacío.</string>
+
+    <!-- Sign Up Strings -->
+    <string name="sign_up_password">Contraseña</string>
+    <string name="sign_up_password_matcher">Vuelva a escribir la contraseña</string>
+    <string name="sign_up_password_matcher_fail">* Las contraseñas no coinciden</string>
+    <string name="sign_up_email_hint">Email: ejemplo@mail.com</string>
+    <string name="sign_up_email_fail">* Email invalido</string>
+    <string name="sign_up_name">Nombre | Apellido</string>
+    <string name="sign_up_name_fail">* Solo caracteres alfanumericos</string>
+    <string name="sign_up_username">Nombre de usuario</string>
+    <string name="sign_up_username_fail">* Solo caracteres alfanumericos</string>
+    <string name="sign_up_register">Registrarme</string>
+    <string name="sign_up_register_with"><b>o</b> registrar con</string>
+    <string name="sign_up_terms_and_privacy">Estoy de acuerdo con los <b><u>Terminos y Politica de privacidad</u></b></string>
+
+    <string name="logged_session">Autorizado</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="action_settings">Configuración</string>
+    <string name="title_activity_login">Acceder</string>
+    <string name="profile_name_title">Nombre de usuario</string>
+    <string name="profile_counter_shots_title">Contador de tragos</string>
+    <string name="profile_favorite_shot_title">Trago favorito</string>
+    <string name="profile_favorite_song_title">Canción favorita</string>
+    <string name="profile_instagram_title">Usuario de Instagram</string>
+    <string name="edit_profile_mode">Editar perfil</string>
+    <string name="edit_profile_save">Perfil actualizado</string>
+    <string name="edit_profile_photo_updated">Foto actualizada</string>
+    <string name="picture">Imagen</string>
+    <string name="description_info">Informacion</string>
+    <string name="request_permission">Necesita permisos para acceder a la camara.</string>
+    <string name="camera_error" translatable="false">This device doesn\'t support CameraX API.</string>
+    <string name="picture_taken">Foto tomada</string>
+    <string name="aspect_ratio" translatable="false">Aspect ratio</string>
+    <string name="switch_flash">Cambiar flash</string>
+    <string name="switch_camera">Cambiar cámara</string>
+    <string name="flash_auto">Flash automático</string>
+    <string name="flash_off">Flash desactivado</string>
+    <string name="flash_on">Flash activado</string>
+    <string name="write_message">Escribe un mensaje…</string>
+    <string name="playlist_last_five">Ultimas cinco reproducidas</string>
+    <string name="popup_song_suggestion">Sugerir al playlist</string>
+    <string name="popup_song_listen_in_spotify">Escuchar en spotify</string>
+    <string name="popup_song_back">Volver</string>
+    <string name="menu_timeline">Social</string>
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_menu">Menu</string>
+    <string name="menu_chat">Conversacion publica</string>
+    <string name="menu_playlist">Música</string>
+    <string name="menu_configuration">Configuración</string>
+    <string name="menu_about">Acerca de</string>
+    <string name="menu_log_out">Cerrar sesión</string>
+    <string name="search_song_no_result">No tenemos esta canción actualmente en el playlist. \n\nPulsa abajo y sugiere la canción que deseas escuchar en el Bar</string>
+    <string name="search_song_suggest">Sugerir canción</string>
+    <string name="search_song_hint">Canción o Artista</string>
+    <string name="timeline_select_content">Seleccionar desde…</string>
+    <string name="suggest_song_send">Sugerir</string>
+    <string name="suggest_song_cancel">Cancelar</string>
+    <string name="suggest_song_name">Nombre de la canción</string>
+    <string name="suggest_song_artist">Artista o agrupación</string>
+    <string name="suggest_song_title">Sugerir canción</string>
+    <string name="menu_category_bite">Comida</string>
+    <string name="menu_category_drinks">Bebidas</string>
+    <string name="menu_category_bar_shots">Tragos</string>
+    <string name="menu_category_bar_others">Otros</string>
+    <string name="menu_category_bite_drinks">Bebidas</string>
+    <string name="menu_category_bite_food">Comida</string>
+    <string name="menu_search_dialog_rating">Calificación:</string>
+    <string name="menu_search_dialog_price">Precio:</string>
+    <string name="search_menu_hint">Nombre, ingrediente o precio…</string>
+    <string name="search_menu_no_results">No hay resultados para tu entrada en el menú.</string>
+    <string name="popup_song_rate">Calificar:</string>
+    <string name="popup_song_rated">Le haz dado una calificación de:</string>
+    <string name="comment_dialog_write">Escribe una descripción…</string>
+    <string name="post_content_publish_fail">Se ha producido un error al realizar la publicación</string>
+    <string name="post_content_publish">Agregado al timeline</string>
+    <string name="post_content_save_image">Imagen guardada en el dispositivo</string>
+    <string name="post_content_caption">Descripción</string>
+    <string name="post_content_clear_text">Limpiar texto</string>
+    <string name="shots_tender_total">"Total (RD$): "</string>
+    <string name="activity_first_sign_up">Registrarme</string>
+    <string name="activity_first_login">Acceder</string>
+    <string name="text_save">Guardar</string>
+    <string name="shots_tender_view_title">Camarer(@)</string>
+    <string name="sign_up_blank_fields">Los campos no deben estar vacío.</string>
+    <string name="digits_without_space" translatable="false">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
+    <string name="digits_allow_space" translatable="false">"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 "</string>
+    <string name="digits_allow_arroba_and_dots" translatable="false">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@.</string>
+    <string name="login_auth_fail">Hubo un fallo en la autenticación</string>
+    <string name="send_mail_verification">Dirección de correo electrónico…</string>
+    <string name="send_mail_message">Recuperar tu contraseña</string>
+    <string name="send_mail_successful">Los pasos para recuperar la contraseña han sido enviados a su email.</string>
+    <string name="send_mail_error">Se produjo un error al procesar la solicitud.</string>
+    <string name="send_mail_verification_message">Verifique los datos antes de procesar la solicitud.</string>
+    <string name="send_mail_blank_field">El campo de entrada no debe estar vacío.</string>
+    <string name="send_mail_success">Se enviaron los pasos a su e-mail para recuperar la contraseña.</string>
+    <string name="timeline_menu_edit">Editar publicación</string>
+    <string name="timeline_menu_report">Reportar publicación</string>
+    <string name="timeline_menu_block_user">Bloquear usuario</string>
+    <string name="error_loading_data">La data se está cargando o no hay conexión a internet.</string>
+    <string name="action_ok" translatable="false">Ok</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="timeline_alert_block_user">¿Estás seguro de bloquear a</string>
+    <string name="back_message">¿Si regresas se perderán los cambios, estás seguro?</string>
+    <string name="menu_share_picture">Hacer una publicación</string>
+    <string name="action_send">Enviar</string>
+    <string name="action_report_success">Reporte enviado satisfactoriamente.</string>
+    <string name="custom_report_title">Seleccione el motivo del reporte:</string>
+    <string name="report_post_first">Imagen inapropiada.</string>
+    <string name="report_post_second">Texto ofensivo o inapropiado.</string>
+    <string name="report_post_third">Contenido no relacionado a Shots Bar.</string>
+    <string name="no_internet_connection">No hay conexión a internet para procesar la petición.</string>
+    <string name="digits_alphabet_allow_space" translatable="false">"ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz "</string>
+    <string name="popup_menu_add_to_cart">Agregar al carrito</string>
+    <string name="popup_menu_rated">Le haz dado una calificación de:</string>
+    <string name="edit_post_title">Editar publicación</string>
+    <string name="edit_post_update">Actualizar publicación</string>
+    <string name="edit_post_updated">Publicación actualizada</string>
+    <string name="menu_edit_post_delete">Eliminar publicación</string>
+    <string name="delete_post_message">La publicación se va a eliminar, ¿Estás seguro?</string>
+    <string name="scrollview_on" translatable="false">On</string>
+    <string name="scrollview_off" translatable="false">Off</string>
+    <string name="timeline_posts">Publicaciones</string>
+    <string name="timeline_advertising">Promociones</string>
+    <string name="not_assigned">Sin asignar</string>
+    <string name="no_internet">No hay conexión a internet.</string>
+    <string name="spotify_not_installed">Spotify no está instalado en su dispositivo</string>
+    <string name="options_user_change_email">Cambiar correo electrónico</string>
+    <string name="options_user_change_password">Cambiar contraseña</string>
+    <string name="options_about_suggestions">Sugerencias para el desarrollador</string>
+    <string name="options_about_help">Ayuda</string>
+    <string name="options_social_update">Contenido auto-actualizable</string>
+    <string name="sign_up_scan_code">Escanea el código</string>
+    <string name="options_about_write_suggestions">Escriba una sugerencia para Shots App…</string>
+    <string name="options_about_suggestion_not_valid">La sugerencia no es válida, intentelo de nuevo</string>
+    <string name="popup_menu_added_to_cart">Agregado al carrito</string>
+    <string name="options_actual_password">Contraseña actual…</string>
+    <string name="options_new_password">Nueva contraseña…</string>
+    <string name="options_about_suggestions_send">Sugerencia enviada, gracias por su opinión</string>
+    <string name="options_password_updated">Contraseña de usuario actualizada</string>
+    <string name="options_email_updated">Email actualizado satisfactoriamente</string>
+    <string name="timeline_image">Imagen de la visualizacion</string>
+    <string name="take_photo_description">Tomar una foto</string>
+    <string name="timeline_view_image_extended">Ver imagen ampliada</string>
+    <string name="scroll_to_bottom">Desplazar hacia el final</string>
+    <string name="suggested_song">La cancion ha sido sugerida</string>
+    <string name="edit_profile">Editar perfil</string>
+    <string name="fragment_feed">Feed</string>
+    <string name="fragment_profile">Perfil</string>
+    <string name="fragment_menu">Menú</string>
+    <string name="fragment_playlist">Musica</string>
+    <string name="sign_in_title">Bar Social App</string>
+    <string name="sign_in_connect_with"><b>o</b> conectate con</string>
+    <string name="fragment_chat">Chat</string>
+    <string name="gallery">Galería</string>
+    <string name="camera">Camara</string>
+    <string name="search_create_playlist">Crear lista de reproduccion</string>
+    <string name="my_personal_playlist">Mis listas de reproduccion</string>
+    <string name="profile_achievements">Logros</string>
+
+</resources>
