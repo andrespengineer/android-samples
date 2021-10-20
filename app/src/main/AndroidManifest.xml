@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.social">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-feature android:name="android.hardware.screen.portrait"/>
+    <uses-feature android:name="android.hardware.camera" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:name=".presentation.base.BaseApplication"
+        android:usesCleartextTraffic="true"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Social.DayNight"
+        android:fullBackupContent="true"
+        tools:ignore="LockedOrientationActivity"
+        android:allowBackup="true">
+        <activity
+            android:name="com.social.presentation.activities.ActivityStarter"
+            android:configChanges="orientation|uiMode"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.social.presentation.activities.ActivitySignIn"
+            android:configChanges="orientation|uiMode"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name="com.social.presentation.activities.ActivityHome"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true"/>
+        <activity
+            android:name="com.social.presentation.activities.ActivitySignUp"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name="com.social.presentation.activities.ActivityCamera"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.social.presentation.activities.ActivityCreatePost"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name="com.social.presentation.activities.ActivityViewProfile"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name="com.social.presentation.activities.ActivityEditPost"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name="com.social.presentation.activities.ActivityMenuSearch"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name="com.social.presentation.activities.ActivitySearchSongs"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
+    </application>
+
+</manifest>

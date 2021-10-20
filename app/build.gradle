@@ -1,0 +1,132 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-parcelize'
+
+android {
+    compileSdkVersion 31
+    defaultConfig {
+        applicationId "com.android.barsocialapp"
+        minSdkVersion 26
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner = "com.android.myapplication.runner.HiltRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    buildFeatures {
+        // Determines whether to generate a BuildConfig class.
+        buildConfig true
+        // Determines whether to support View Binding.
+        // Note that the viewBinding.enabled property is now deprecated.
+        viewBinding true
+        // Determines whether to support injecting custom variables into the module’s R class.
+        resValues true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.window:window:1.0.0-beta02'
+    def work_version = "2.6.0"
+    def android_material_version = "1.4.0"
+    def paging_version = "3.0.1"
+    def app_compat_version = "1.3.1"
+    def cardview_version = "1.0.0"
+    def recyclerview_version = "1.2.1"
+    def lottie_version = "3.1.0"
+    def retrofit_version = "2.6.2"
+    def gson_version = "2.6.2"
+    def ok_http_version = "3.12.3"
+    def logging_interceptor_version = "3.4.1"
+    def dagger_hilt_version = "2.35"
+    def junit_version = "4.13.1"
+    def camerax_version = "1.0.2"
+    def camerax_view_version = "1.0.0-alpha30"
+    def constraint_layout = "2.1.1"
+    def coil_version = "1.3.2"
+    def coroutines = "1.5.0"
+    def fragment_ktx_version = "1.3.6"
+    def ktx_hilt_navigation_graph = "1.0.0"
+    def lifecycle_version = "2.4.0-rc01"
+    def swipe_refresh_version = "1.1.0"
+    def nav_version = "2.3.5"
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // SwipeRefreshLayout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_version")
+
+    // Image Library
+    implementation("io.coil-kt:coil:$coil_version")
+
+    // ViewModelKTX
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+
+    // Hilt viewModels with NavigationGraph
+    implementation "androidx.hilt:hilt-navigation-fragment:$ktx_hilt_navigation_graph"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    // MotionLayout
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
+
+    // Camera
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
+    implementation "androidx.camera:camera-view:$camerax_view_version"
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines")
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+
+    // Paging
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // Theme
+    implementation "androidx.appcompat:appcompat:$app_compat_version"
+    implementation "com.google.android.material:material:$android_material_version"
+    implementation "androidx.cardview:cardview:$cardview_version"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+
+    // Custom Views
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    // Rest Api
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
+    implementation "com.squareup.okhttp3:okhttp:$ok_http_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
+
+    // DI Dagger hilt
+    implementation("com.google.dagger:hilt-android:$dagger_hilt_version")
+    kapt("com.google.dagger:hilt-android-compiler:$dagger_hilt_version")
+
+
+    // For instrumented tests.
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$dagger_hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$dagger_hilt_version"
+
+    // Unit testing
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    testImplementation "junit:junit:$junit_version"
+    implementation "androidx.core:core-ktx:1.6.0"
+
+}
+repositories {
+    mavenCentral()
+}
