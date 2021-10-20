@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvSignUpTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_28sp"
+        android:text="@string/activity_first_sign_up"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tilSignUpUsername"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSignUpUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
+        app:startIconDrawable="@drawable/ic_account"
+        app:layout_constraintWidth_percent=".6"
+        app:layout_constraintTop_toBottomOf="@id/tvSignUpTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSignUpUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_14sp"
+            android:hint="@string/sign_up_username"
+            android:drawablePadding="@dimen/margin_10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSignUpEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
+        app:startIconDrawable="@drawable/ic_email"
+        app:layout_constraintWidth_percent=".6"
+        app:layout_constraintTop_toBottomOf="@id/tilSignUpUsername"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSignUpEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_14sp"
+            android:hint="@string/sign_up_email_hint"
+            android:drawablePadding="@dimen/margin_10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSignUpPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_14dp"
+        app:startIconDrawable="@drawable/ic_key"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="?attr/colorPrimarySurface"
+        app:layout_constraintWidth_percent=".6"
+        app:layout_constraintTop_toBottomOf="@id/tilSignUpEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cbTermsAndPolicy">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSignUpPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_14sp"
+            android:hint="@string/sign_up_password"
+            android:drawablePadding="@dimen/margin_10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/cbTermsAndPolicy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_14sp"
+        android:layout_marginTop="@dimen/margin_14dp"
+        android:layout_marginStart="@dimen/margin_14dp"
+        android:paddingStart="@dimen/margin_14dp"
+        android:buttonTint="?attr/colorPrimarySurface"
+        android:text="@string/sign_up_terms_and_privacy"
+        app:layout_constraintWidth_percent=".6"
+        app:layout_constraintTop_toBottomOf="@id/tilSignUpPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_14dp"
+        android:textAllCaps="false"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/sign_up_register"
+        android:minHeight="0dp"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintTop_toBottomOf="@id/cbTermsAndPolicy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tilSignUpPassword"
+        app:layout_constraintEnd_toEndOf="@id/cbTermsAndPolicy"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_10dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSignUp">
+        <TextView
+            android:id="@+id/tvSignUpWith"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_14sp"
+            android:text="@string/sign_up_register_with"
+            android:layout_marginEnd="@dimen/margin_14dp"
+            android:layout_gravity="center"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivSignUpFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/ic_facebook"
+            android:tint="?attr/colorOnBackground"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="@dimen/margin_14dp"
+            android:layout_gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivSignUpGoogle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/margin_10dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:layout_marginEnd="@dimen/margin_14dp"
+            app:srcCompat="@drawable/ic_google"
+            android:scaleType="fitCenter"
+            android:tint="?attr/colorOnBackground"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

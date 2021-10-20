@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageButton
+        android:id="@+id/ibActionBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:src="@drawable/ic_arrow_back"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/margin_20dp"
+        android:layout_margin="@dimen/margin_20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/colorPrimarySurface"/>
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl10percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/clShotsCounterContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/margin_35dp"
+        app:cardCornerRadius="@dimen/margin_14dp"
+        app:layout_constraintWidth_percent=".95"
+        app:layout_constraintTop_toTopOf="@id/gl10percent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/clFavoriteShotContainer">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin_10dp">
+            <TextView
+                android:id="@+id/tvCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tvProfileShotsCounterTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0"/>
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                style="?android:attr/progressBarStyleHorizontal"
+                android:id="@+id/pbProfileShotsCounter"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_progressbar_status"
+                android:background="@drawable/circular_progressbar"
+                android:max="100"
+                android:progress="0"
+                app:layout_constraintDimensionRatio="h, 1:1"
+                app:layout_constraintHeight_percent=".5"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tvProfileShotsCounterTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvProfileShotsCounterTitle"
+                style="@style/TextView.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_16sp"
+                android:text="@string/profile_counter_shots_title"
+                android:gravity="center"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintTop_toTopOf="@id/pbProfileShotsCounter"
+                app:layout_constraintBottom_toTopOf="@id/tvProfileShotsCounter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/pbProfileShotsCounter"/>
+
+            <TextView
+                android:id="@+id/tvProfileShotsCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                tools:text="0"
+                app:layout_constrainedWidth="true"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintTop_toBottomOf="@id/tvProfileShotsCounterTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvProfileShotsCounterTitle"
+                app:layout_constraintEnd_toEndOf="@id/tvProfileShotsCounterTitle"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivProfilePhoto"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:translationZ="1dp"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintDimensionRatio="h, 1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/gl10percent"
+        app:layout_constraintBottom_toBottomOf="@id/gl10percent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Image.PILL"/>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/clFavoriteShotContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/margin_35dp"
+        app:cardCornerRadius="@dimen/margin_14dp"
+        app:layout_constraintWidth_percent=".95"
+        app:layout_constraintTop_toBottomOf="@id/clShotsCounterContainer"
+        app:layout_constraintBottom_toBottomOf="@id/gl85percent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/margin_20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tvProfileFavoriteShotTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10dp"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintVertical_bias="0"
+                android:textSize="@dimen/text_size_18sp"
+                android:text="@string/profile_favorite_shot_title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tvProfileFavoriteSongTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tvProfileFavoriteShot"/>
+
+            <TextView
+                android:id="@+id/tvProfileFavoriteShot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_18sp"
+                app:layout_constraintTop_toTopOf="@id/tvProfileFavoriteShotTitle"
+                app:layout_constraintBottom_toBottomOf="@id/tvProfileFavoriteShotTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvProfileFavoriteShotTitle"/>
+
+            <TextView
+                android:id="@+id/tvProfileFavoriteSongTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10dp"
+                android:textSize="@dimen/text_size_18sp"
+                android:text="@string/profile_favorite_shot_title"
+                app:layout_constraintTop_toBottomOf="@id/tvProfileFavoriteShotTitle"
+                app:layout_constraintBottom_toTopOf="@id/tvProfileInstagramTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tvProfileFavoriteSong"/>
+
+            <TextView
+                android:id="@+id/tvProfileFavoriteSong"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_18sp"
+                app:layout_constraintTop_toTopOf="@id/tvProfileFavoriteSongTitle"
+                app:layout_constraintBottom_toBottomOf="@id/tvProfileFavoriteSongTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvProfileFavoriteSongTitle"/>
+
+            <TextView
+                android:id="@+id/tvProfileInstagramTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10dp"
+                android:textSize="@dimen/text_size_18sp"
+                android:text="@string/profile_instagram_title"
+                app:layout_constraintTop_toBottomOf="@id/tvProfileFavoriteSongTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tvProfileInstagram"/>
+
+            <TextView
+                android:id="@+id/tvProfileInstagram"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="@id/tvProfileInstagramTitle"
+                app:layout_constraintBottom_toBottomOf="@id/tvProfileInstagramTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvProfileInstagramTitle"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl85percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

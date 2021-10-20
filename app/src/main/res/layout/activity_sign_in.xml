@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvSignInTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_28sp"
+        android:text="@string/sign_in_title"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tilSignInUsername"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSignInUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
+        app:startIconDrawable="@drawable/ic_email"
+        app:layout_constraintWidth_percent=".6"
+        app:layout_constraintTop_toBottomOf="@id/tvSignInTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSignInUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_14sp"
+            android:hint="@string/login_user"
+            android:drawablePadding="@dimen/margin_10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSignInPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
+        app:boxStrokeColor="?attr/colorPrimaryVariant"
+        app:startIconDrawable="@drawable/ic_key"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="?attr/colorPrimary"
+        app:layout_constraintWidth_percent=".6"
+        app:layout_constraintTop_toBottomOf="@id/tilSignInUsername"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSignInPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_14sp"
+            android:hint="@string/login_password"
+            android:drawablePadding="@dimen/margin_10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvSignInForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:textSize="@dimen/text_size_14sp"
+        android:text="@string/login_forgot_password"
+        app:layout_constraintTop_toBottomOf="@id/tilSignInPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner_radius"
+        android:textAllCaps="false"
+        android:textSize="@dimen/text_size_16sp"
+        android:text="@string/login_access"
+        android:minHeight="0dp"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@id/tvSignInForgotPassword"
+        app:layout_constraintBottom_toTopOf="@id/llAccessOptions"
+        app:layout_constraintStart_toStartOf="@id/tilSignInPassword"
+        app:layout_constraintEnd_toEndOf="@id/tilSignInPassword"/>
+
+    <LinearLayout
+        android:id="@+id/llAccessOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_35dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSignIn"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <TextView
+            android:id="@+id/tvSignInWith"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_14sp"
+            android:text="@string/sign_in_connect_with"
+            android:layout_gravity="center"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivSignInFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_facebook"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:tint="?attr/colorOnBackground"
+            android:layout_marginHorizontal="@dimen/margin_14dp"
+            android:layout_gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivSignInGoogle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/ic_google"
+            android:scaleType="fitCenter"
+            android:tint="?attr/colorOnBackground"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

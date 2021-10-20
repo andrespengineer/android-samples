@@ -1,0 +1,82 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/etSearchMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:defaultQueryHint="@string/search_menu_hint"
+        app:queryHint="@string/search_menu_hint"
+        app:searchIcon="@drawable/ic_search"
+        app:layout_constraintStart_toEndOf="@id/ibActionBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rvMenu"/>
+
+    <ImageButton
+        android:id="@+id/ibActionBack"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:padding="@dimen/margin_20dp"
+        android:src="@drawable/ic_arrow_back"
+        android:background="@android:color/transparent"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/etSearchMenu"
+        app:layout_constraintTop_toTopOf="@id/etSearchMenu"
+        app:layout_constraintBottom_toBottomOf="@id/etSearchMenu"
+        app:tint="?attr/colorOnSurface" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMenu"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbarThumbVertical="@android:color/transparent"
+        android:scrollbars="vertical"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etSearchMenu"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvSearchMenuNoResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginEnd="@dimen/margin_20dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:text="@string/search_menu_no_results"
+        app:layout_constraintVertical_bias=".3"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etSearchMenu"/>
+
+    <com.social.presentation.customviews.ShakeableFloatActionButton
+        android:id="@+id/fabSearchMenu"
+        android:padding="@dimen/margin_20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:text="@string/popup_menu_add_to_cart"
+        android:gravity="center"
+        app:iconPadding="@dimen/margin_10dp"
+        app:backgroundTint="?attr/colorPrimaryVariant"
+        app:borderWidth="0dp"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:iconTint="?attr/colorOnPrimarySurface"
+        app:icon="@drawable/ic_shopping_cart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
