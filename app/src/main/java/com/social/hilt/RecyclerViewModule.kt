@@ -7,15 +7,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.social.R
-import com.social.presentation.adapters.FeedAdapterGrid
+import com.social.presentation.feed.adapter.FeedAdapterGrid
 import com.social.presentation.controls.SpacesItemDecoration
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.FragmentComponent
-import dagger.hilt.android.scopes.ActivityScoped
-import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Named
 
 @InstallIn(ActivityComponent::class, FragmentComponent::class)

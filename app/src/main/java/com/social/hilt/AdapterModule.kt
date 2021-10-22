@@ -1,9 +1,15 @@
 package com.social.hilt
 
-import com.social.presentation.adapters.*
+import com.social.presentation.chat.adapter.ChatMessagesAdapter
 import com.social.presentation.dialogfragments.DialogFragmentReport
 import com.social.presentation.dialogfragments.DialogFragmentMenu
 import com.social.presentation.dialogfragments.DialogFragmentRateSong
+import com.social.presentation.feed.adapter.FeedAdapter
+import com.social.presentation.feed.adapter.FeedAdapterGrid
+import com.social.presentation.menu.adapter.SearchMenuAdapter
+import com.social.presentation.playlist.adapter.PlaylistAdapter
+import com.social.presentation.playlist.adapter.SearchSongsAdapter
+import com.social.presentation.post.adapter.SwipeFiltersPagerAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +31,7 @@ class AdapterModule {
     }
 
     @Provides
-    fun provideSearchSongsAdapter(dialogFragmentRateSong: DialogFragmentRateSong) : SearchSongsAdapter{
+    fun provideSearchSongsAdapter(dialogFragmentRateSong: DialogFragmentRateSong) : SearchSongsAdapter {
         return SearchSongsAdapter(dialogFragmentRateSong = dialogFragmentRateSong)
     }
 
@@ -40,7 +46,7 @@ class AdapterModule {
     }
 
     @Provides
-    fun provideFeedAdapterGrid() : FeedAdapterGrid{
+    fun provideFeedAdapterGrid() : FeedAdapterGrid {
         return FeedAdapterGrid()
     }
 

@@ -10,6 +10,13 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 
 class FeedPagingDataSource(private val apiClient: RetrofitApiClient, var userId: Long = 0) : PagingSource<Int, FeedModel>() {
+
+    // This is for test purpose only
+    companion object {
+        private const val MAX_PAGE = 3
+    }
+
+
     override fun getRefreshKey(state: PagingState<Int, FeedModel>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
@@ -25,7 +32,7 @@ class FeedPagingDataSource(private val apiClient: RetrofitApiClient, var userId:
             return LoadResult.Page(
                     data = response,
                     prevKey = null,
-                    nextKey = ++nextPageNumber)
+                    nextKey = if(nextPageNumber < MAX_PAGE) ++nextPageNumber else null)
         } catch (e: Exception) {
             // Handle errors in this block and return LoadResult.Error if it is an
             // expected error (such as a network failure).

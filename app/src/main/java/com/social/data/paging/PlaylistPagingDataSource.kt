@@ -8,6 +8,11 @@ import com.social.data.clients.api.RetrofitApiClient
 import kotlinx.coroutines.flow.first
 
 class PlaylistPagingDataSource(private val apiClient: RetrofitApiClient, var userId: Long = 0L, var query: String = "") : PagingSource<Int, PlaylistModel>() {
+    // This is for test purpose only
+    companion object {
+        private const val MAX_PAGE = 3
+    }
+
     override fun getRefreshKey(state: PagingState<Int, PlaylistModel>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
@@ -18,14 +23,15 @@ class PlaylistPagingDataSource(private val apiClient: RetrofitApiClient, var use
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PlaylistModel> {
         try {
             var nextPageNumber = params.key ?: 1
-            val response = apiClient.getPlaylist(query.toLong(), nextPageNumber, query).first()
+            val response = apiClient.getPlaylist(userId, nextPageNumber, query).first()
             return LoadResult.Page(
                     data = response,
                     prevKey = null,
-                    nextKey = ++nextPageNumber)
+                    nextKey = if(nextPageNumber < MAX_PAGE) ++nextPageNumber else null)
         } catch (e: Exception) {
             // Handle errors in this block and return LoadResult.Error if it is an
             // expected error (such as a network failure).
+            e.printStackTrace()
         }
         return LoadResult.Error(throwable = NetworkErrorException())
     }
