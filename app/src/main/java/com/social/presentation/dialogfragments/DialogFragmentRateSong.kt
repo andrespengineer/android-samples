@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Toast
 import coil.load
+import coil.request.CachePolicy
 import com.social.R
 import com.social.base.BaseDialogFragment
 import com.social.data.models.PlaylistModel
@@ -39,8 +40,7 @@ class DialogFragmentRateSong : BaseDialogFragment<FragmentSongPopupBinding>(), V
         }
 
         binding.ivPopupSongImage.load(item.image){
-            crossfade(true)
-            memoryCacheKey(item.key)
+            memoryCacheKey(item.image + item.key)
         }
 
         binding.tvPopupSongArtist.text = item.artist
