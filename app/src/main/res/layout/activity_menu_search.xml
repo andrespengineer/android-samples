@@ -69,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:text="@string/popup_menu_add_to_cart"
+        android:textColor="?colorOnPrimary"
         android:gravity="center"
         app:iconPadding="@dimen/margin_10dp"
         app:backgroundTint="?attr/colorPrimaryVariant"

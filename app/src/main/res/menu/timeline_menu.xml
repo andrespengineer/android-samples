@@ -7,10 +7,6 @@
             android:title="@string/timeline_menu_edit" />
 
         <item
-            android:id="@+id/timeline_view_full_screen"
-            android:title="@string/timeline_view_image_extended" />
-
-        <item
         android:id="@+id/timeline_report"
         android:title="@string/timeline_menu_report"/>
 

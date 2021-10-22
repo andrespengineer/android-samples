@@ -6,27 +6,27 @@
 
     <fragment
         android:id="@+id/fragment_feed"
-        android:name="com.social.presentation.fragments.FragmentFeed"
+        android:name="com.social.presentation.feed.FragmentFeed"
         android:label="@string/fragment_chat" />
     <fragment
         android:id="@+id/fragment_chat"
-        android:name="com.social.presentation.fragments.FragmentChat"
+        android:name="com.social.presentation.chat.FragmentChat"
         android:label="@string/fragment_chat"/>
     <fragment
         android:id="@+id/fragment_playlist"
-        android:name="com.social.presentation.fragments.FragmentPlaylist"
+        android:name="com.social.presentation.playlist.FragmentPlaylist"
         android:label="@string/fragment_playlist"/>
 
     <fragment
         android:id="@+id/fragment_menu"
         android:tag="@string/fragment_menu"
-        android:name="com.social.presentation.fragments.FragmentMenu"
+        android:name="com.social.presentation.menu.FragmentMenu"
         android:label="@string/fragment_menu"/>
 
     <fragment
         android:id="@+id/fragment_profile"
         android:tag="@string/fragment_profile"
-        android:name="com.social.presentation.fragments.FragmentProfile"
+        android:name="com.social.presentation.profile.FragmentProfile"
         android:label="@string/fragment_profile">
         <action
             android:id="@+id/action_fragment_profile_to_fragmentPreferences"
@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/fragment_preferences"
-        android:name="com.social.presentation.fragments.FragmentPreferences"
+        android:name="com.social.presentation.preferences.FragmentPreferences"
         android:label="FragmentPreferences">
         <action
             android:id="@+id/preferences_to_profile"
