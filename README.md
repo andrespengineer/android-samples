@@ -4,10 +4,10 @@
 
 This application is designed to be a social network for bars. In it, a series of functionalities are integrated that allow interaction between users such as:
 
-- Feed: Make publications with description and images.
+- Feed: Create posts with description and images.
 - General chat: Chat with active users.
 - Menu: choose between the categories, make the purchase and rate the items.
-- Playlist: View the bar's live playlist, look at the music catalog and suggest the ones you can't find.
+- Playlist: View the Bar's live playlist, look at the music catalog and suggest the ones you can't find.
 - Profile: Create custom playlists and define your basic information.
 
 This [Android-Sample](https://github.com/andrespengineer/Android-Samples/) is written in Kotlin and under the [MVVM](https://www.raywenderlich.com/7026-getting-started-with-mvp-model-view-presenter-on-android) Architecture and Components:
