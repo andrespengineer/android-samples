@@ -7,6 +7,8 @@ import androidx.paging.PagingState
 import com.social.data.clients.api.RetrofitApiClient
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.onCompletion
 
 class ChatPagingDataSource(private val apiClient: RetrofitApiClient, var userId: Long = 0L) : PagingSource<Int, ChatMessageModel>() {
 
@@ -25,7 +27,9 @@ class ChatPagingDataSource(private val apiClient: RetrofitApiClient, var userId:
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ChatMessageModel> {
         try {
             var nextPageNumber = params.key ?: 1
-            val response = apiClient.getChatMessages(userId, nextPageNumber).first()
+            val response = apiClient.getChatMessages(userId, nextPageNumber).firstOrNull()
+                ?: return LoadResult.Error(throwable = NetworkErrorException())
+
             return LoadResult.Page(
                 data = response,
                 prevKey = null,
@@ -33,6 +37,7 @@ class ChatPagingDataSource(private val apiClient: RetrofitApiClient, var userId:
         } catch (e: Exception) {
             // Handle errors in this block and return LoadResult.Error if it is an
             // expected error (such as a network failure).
+            e.printStackTrace()
         }
         return LoadResult.Error(throwable = NetworkErrorException())
     }

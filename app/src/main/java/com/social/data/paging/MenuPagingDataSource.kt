@@ -5,7 +5,9 @@ import com.social.data.models.MenuModel
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.social.data.clients.api.RetrofitApiClient
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.*
+import retrofit2.Response
+import kotlin.system.exitProcess
 
 class MenuPagingDataSource(private val apiClient: RetrofitApiClient, var userId: Long = 0L, var category: Int = 0, var query: String = "") : PagingSource<Int, MenuModel>() {
 
@@ -24,7 +26,9 @@ class MenuPagingDataSource(private val apiClient: RetrofitApiClient, var userId:
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MenuModel> {
         try {
             var nextPageNumber = params.key ?: 1
-            val response = apiClient.getMenu(userId, category, nextPageNumber, query).first()
+            val response = apiClient.getMenu(userId, category, nextPageNumber, query).firstOrNull()
+                ?: return LoadResult.Error(throwable = NetworkErrorException())
+
             return LoadResult.Page(
                     data = response,
                     prevKey = null,
@@ -32,6 +36,7 @@ class MenuPagingDataSource(private val apiClient: RetrofitApiClient, var userId:
         } catch (e: Exception) {
             // Handle errors in this block and return LoadResult.Error if it is an
             // expected error (such as a network failure).
+            e.printStackTrace()
         }
         return LoadResult.Error(throwable = NetworkErrorException())
     }

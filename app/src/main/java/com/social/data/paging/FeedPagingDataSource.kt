@@ -27,7 +27,8 @@ class FeedPagingDataSource(private val apiClient: RetrofitApiClient, var userId:
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, FeedModel> {
         try {
             var nextPageNumber = params.key ?: 1
-            val response = apiClient.getFeed(userId, nextPageNumber).first()
+            val response = apiClient.getFeed(userId, nextPageNumber).firstOrNull()
+                ?: return LoadResult.Error(throwable = NetworkErrorException())
 
             return LoadResult.Page(
                     data = response,

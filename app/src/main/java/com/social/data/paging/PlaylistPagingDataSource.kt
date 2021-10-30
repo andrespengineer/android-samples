@@ -6,8 +6,10 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.social.data.clients.api.RetrofitApiClient
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 
 class PlaylistPagingDataSource(private val apiClient: RetrofitApiClient, var userId: Long = 0L, var query: String = "") : PagingSource<Int, PlaylistModel>() {
+
     // This is for test purpose only
     companion object {
         private const val MAX_PAGE = 3
@@ -23,7 +25,9 @@ class PlaylistPagingDataSource(private val apiClient: RetrofitApiClient, var use
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PlaylistModel> {
         try {
             var nextPageNumber = params.key ?: 1
-            val response = apiClient.getPlaylist(userId, nextPageNumber, query).first()
+            val response = apiClient.getPlaylist(userId, nextPageNumber, query).firstOrNull()
+                ?: return LoadResult.Error(throwable = NetworkErrorException())
+
             return LoadResult.Page(
                     data = response,
                     prevKey = null,
