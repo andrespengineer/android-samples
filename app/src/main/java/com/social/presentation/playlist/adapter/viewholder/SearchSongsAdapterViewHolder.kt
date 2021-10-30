@@ -15,8 +15,11 @@ class SearchSongsAdapterViewHolder(private val binding: FragmentSearchSongsItems
 
     override fun onBind(model: PlaylistModel) {
         super.onBind(model)
-        binding.tvSearchSongArtist.text = model.artist
-        binding.tvSearchSongName.text = model.name
+        with(binding){
+            tvSearchSongArtist.text = model.artist
+            tvSearchSongName.text = model.name
+        }
+
     }
 
     override fun onClick(v: View) {

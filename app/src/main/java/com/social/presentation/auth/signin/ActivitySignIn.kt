@@ -14,11 +14,10 @@ import com.social.presentation.auth.AuthViewModel
 import com.social.presentation.auth.FacebookAuthViewModel
 import com.social.presentation.auth.FirebaseAuthViewModel
 import com.social.presentation.auth.GoogleAuthViewModel
-import com.social.presentation.home.ActivityHome
+import com.social.presentation.home.activities.ActivityHome
 import com.social.presentation.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -35,10 +34,13 @@ class ActivitySignIn : BaseActivity<ActivitySignInBinding>(), View.OnClickListen
 
     override fun setup() {
 
-        binding.ivSignInFacebook.setOnClickListener(this)
-        binding.ivSignInGoogle.setOnClickListener(this)
-        binding.tvSignInForgotPassword.setOnClickListener(this)
-        binding.btnSignIn.setOnClickListener(this)
+        with(binding){
+            ivSignInFacebook.setOnClickListener(this@ActivitySignIn)
+            ivSignInGoogle.setOnClickListener(this@ActivitySignIn)
+            tvSignInForgotPassword.setOnClickListener(this@ActivitySignIn)
+            btnSignIn.setOnClickListener(this@ActivitySignIn)
+        }
+
     }
 
     override fun collectViewModels() {
@@ -82,19 +84,23 @@ class ActivitySignIn : BaseActivity<ActivitySignInBinding>(), View.OnClickListen
     }
 
     override fun onClick(v: View) {
-        when(v.id){
-            R.id.btnSignIn -> {
-                firebaseAuthViewModel.signIn(binding.etSignInUsername.text.toString(), binding.etSignInPassword.text.toString())
-            }
-            R.id.ivSignInFacebook -> {
-                facebookAuthViewModel.signIn(binding.etSignInUsername.text.toString(), binding.etSignInPassword.text.toString())
-            }
-            R.id.ivSignInGoogle -> {
-                googleAuthViewModel.signIn(binding.etSignInUsername.text.toString(), binding.etSignInPassword.text.toString())
-            }
-            R.id.tvSignInForgotPassword -> {
 
+        with(binding){
+            when(v.id){
+                btnSignIn.id -> {
+                    firebaseAuthViewModel.signIn(binding.etSignInUsername.text.toString(), binding.etSignInPassword.text.toString())
+                }
+                ivSignInFacebook.id -> {
+                    facebookAuthViewModel.signIn(binding.etSignInUsername.text.toString(), binding.etSignInPassword.text.toString())
+                }
+                ivSignInGoogle.id -> {
+                    googleAuthViewModel.signIn(binding.etSignInUsername.text.toString(), binding.etSignInPassword.text.toString())
+                }
+                tvSignInForgotPassword.id -> {
+
+                }
             }
         }
+
     }
 }

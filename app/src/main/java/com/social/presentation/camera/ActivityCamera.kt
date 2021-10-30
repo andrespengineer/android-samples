@@ -1,4 +1,4 @@
-package com.social.presentation.post
+package com.social.presentation.camera
 
 import android.content.Intent
 import android.net.Uri
@@ -58,7 +58,7 @@ class ActivityCamera : BaseActivity<ActivityPreviewCameraBinding>() {
 
             override fun onError(exception: ImageCaptureException) {
                 setResult(RESULT_CANCELED, intent)
-                finish()
+                this@ActivityCamera.finish()
             }
         })
     }

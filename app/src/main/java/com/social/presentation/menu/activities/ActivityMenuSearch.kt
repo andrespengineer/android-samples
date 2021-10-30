@@ -1,4 +1,4 @@
-package com.social.presentation.menu
+package com.social.presentation.menu.activities
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,15 +12,18 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
+import androidx.paging.LoadStateAdapter
+import androidx.paging.LoadStates
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.social.hilt.RecyclerViewModule.Companion.ACTIVITY_SCOPED
+import com.social.presentation.base.BaseLoadStateAdapter
+import com.social.presentation.menu.MenuViewModel
 import com.social.presentation.menu.adapter.SearchMenuAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Named
 
 @AndroidEntryPoint
 class ActivityMenuSearch : BaseActivity<ActivityMenuSearchBinding>(), SearchView.OnQueryTextListener {
@@ -29,11 +32,11 @@ class ActivityMenuSearch : BaseActivity<ActivityMenuSearchBinding>(), SearchView
 
     override val bindingInflater: (LayoutInflater) -> ActivityMenuSearchBinding
         get() = ActivityMenuSearchBinding::inflate
+
     @Inject
     lateinit var searchMenuAdapter: SearchMenuAdapter
 
     @Inject
-    @Named(ACTIVITY_SCOPED)
     lateinit var linearLayoutManager: LinearLayoutManager
 
     @Inject
@@ -52,18 +55,17 @@ class ActivityMenuSearch : BaseActivity<ActivityMenuSearchBinding>(), SearchView
             finish()
         }
 
-
-
         searchMenuAdapter.fragmentManager = supportFragmentManager
         binding.rvMenu.layoutManager = linearLayoutManager
         binding.rvMenu.itemAnimator = itemAnimator
-        binding.rvMenu.adapter = searchMenuAdapter
+        binding.rvMenu.adapter = searchMenuAdapter.withLoadStateFooter(BaseLoadStateAdapter(searchMenuAdapter))
+
         binding.etSearchMenu.setOnQueryTextListener(this)
 
     }
 
     override fun fetchData() {
-        profileViewModel.getCachedUser(true)
+        profileViewModel.getCachedUser()
     }
 
     override fun collectViewModels() {
@@ -74,15 +76,18 @@ class ActivityMenuSearch : BaseActivity<ActivityMenuSearchBinding>(), SearchView
                         when (it) {
                             is MenuViewModel.UiState.Loading -> {
                                 showLoading(true)
-                                showNoResults(false)
                             }
                             is MenuViewModel.Success.Menu -> {
-                                searchMenuAdapter.submitData(it.menu)
-                                showNoResults(false)
+                                launch {
+                                    searchMenuAdapter.submitData(it.menu)
+                                }
                             }
-                            else -> {
+                            is MenuViewModel.Failed.RequestError -> {
                                 showNoResults(true)
+                            }
+                            is MenuViewModel.UiState.Complete -> {
                                 showLoading(false)
+                                showNoResults(false)
                             }
                         }
                     }
@@ -90,11 +95,20 @@ class ActivityMenuSearch : BaseActivity<ActivityMenuSearchBinding>(), SearchView
                 launch {
                     profileViewModel.cachedUserState.collect {
                         when (it) {
-                            is ProfileViewModel.StateSuccess.CachedUser -> {
+                            is ProfileViewModel.Success.CachedUser -> {
                                 user = it.user
                                 onQueryTextSubmit("")
                             }
-                            else -> showNoResults(true)
+                            is ProfileViewModel.UiState.Loading -> {
+                                showNoResults(false)
+                                showLoading(true)
+                            }
+                            is ProfileViewModel.UiState.Complete -> {
+                                showLoading(false)
+                            }
+                            else -> {
+
+                            }
                         }
                     }
                 }

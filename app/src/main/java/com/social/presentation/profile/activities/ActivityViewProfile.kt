@@ -1,4 +1,4 @@
-package com.social.presentation.profile
+package com.social.presentation.profile.activities
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
@@ -14,7 +14,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import coil.load
-import coil.request.CachePolicy
+import com.social.presentation.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -37,7 +37,7 @@ class ActivityViewProfile : BaseActivity<ActivityViewProfileBinding>() {
                     profileViewModel.userState.collect {
                         when(it) {
                             is ProfileViewModel.UiState.Loading -> showLoading(true)
-                            is ProfileViewModel.StateSuccess.User -> {
+                            is ProfileViewModel.Success.User -> {
                                 updateProfileUi(it.user)
                                 animateDrinkCount(it.user, it.user.drinkCount * 3)
                             }
@@ -57,13 +57,14 @@ class ActivityViewProfile : BaseActivity<ActivityViewProfileBinding>() {
 
     private fun updateProfileUi(data: ProfileModel) {
 
-        binding.tvProfileShotsCounter.text = data.drinkCount.toString()
-        binding.tvProfileFavoriteShot.text = data.favoriteDrink
-        binding.tvProfileFavoriteSong.text = data.favoriteSong
-        binding.tvProfileInstagram.text = data.instagram
-        binding.ivProfilePhoto.load(data.thumbnail){
-            memoryCacheKey(data.thumbnail + data.key)
+        with(binding){
+            tvProfileShotsCounter.text = data.drinkCount.toString()
+            tvProfileFavoriteShot.text = data.favoriteDrink
+            tvProfileFavoriteSong.text = data.favoriteSong
+            tvProfileInstagram.text = data.instagram
+            ivProfilePhoto.load(data.thumbnail)
         }
+
     }
 
     private fun animateDrinkCount(user: ProfileModel, maxDrinks: Int) {

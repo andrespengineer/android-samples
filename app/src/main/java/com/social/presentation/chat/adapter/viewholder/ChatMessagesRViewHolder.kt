@@ -13,11 +13,11 @@ class ChatMessagesRViewHolder(val binding: FragmentChatMessageRightBinding, adap
 
     override fun onBind(model: ChatMessageModel) {
         super.onBind(model)
-        binding.tvChatMessageText.text = model.message
-        binding.tvChatMessageTime.text = DateFormat.format("h:mm a", model.date)
-        binding.ivChatMessageProfilePhoto.load(model.user.thumbnail){
-            size(100, 100)
-            memoryCacheKey(model.user.thumbnail + model.user.key)
+        with(binding){
+            tvChatMessageText.text = model.message
+            tvChatMessageTime.text = DateFormat.format("h:mm a", model.date)
+            ivChatMessageProfilePhoto.load(model.user.thumbnail)
         }
+
     }
 }

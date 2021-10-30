@@ -2,14 +2,13 @@ package com.social.presentation.feed.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import coil.memory.MemoryCache
 import com.social.presentation.base.BaseViewHolder
 import com.social.data.models.AdvertiseModel
 import com.social.data.models.FeedModel
 import com.social.databinding.FragmentFeedAdvertisingContainerBinding
 import com.social.databinding.FragmentFeedRecyclerViewItemGridModeBinding
 import com.social.presentation.base.BasePagingAdapter
-import com.social.presentation.feed.adapter.viewholder.FeedAdapterGridHeaderViewHolder
+import com.social.presentation.feed.adapter.viewholder.FeedAdvertisementViewHolder
 import com.social.presentation.feed.adapter.viewholder.FeedAdapterGridViewHolder
 
 class FeedAdapterGrid : BasePagingAdapter<FeedModel, BaseViewHolder<FeedModel, *>>(FeedModel.DIFF_ITEM_CALLBACK){
@@ -20,7 +19,7 @@ class FeedAdapterGrid : BasePagingAdapter<FeedModel, BaseViewHolder<FeedModel, *
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<FeedModel, *> {
         return if (viewType == ITEM_TYPE_HEADER) {
-            FeedAdapterGridHeaderViewHolder(FragmentFeedAdvertisingContainerBinding.inflate(LayoutInflater.from(parent.context), parent, false), this)
+            FeedAdvertisementViewHolder(FragmentFeedAdvertisingContainerBinding.inflate(LayoutInflater.from(parent.context), parent, false), this)
         } else {
             FeedAdapterGridViewHolder(FragmentFeedRecyclerViewItemGridModeBinding.inflate(LayoutInflater.from(parent.context), parent, false), this)
         }

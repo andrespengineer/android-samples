@@ -1,4 +1,4 @@
-package com.social.presentation.chat
+package com.social.presentation.chat.adapter.fragments
 
 import android.view.*
 import com.social.presentation.base.BaseFragment
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.social.R
 import com.social.hilt.RecyclerViewModule
+import com.social.presentation.chat.ChatMessagesViewModel
 import com.social.presentation.chat.adapter.ChatMessagesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -72,7 +73,7 @@ class FragmentChat : BaseFragment<FragmentChatBinding>() {
         binding.rvChatMessagesList.adapter = chatAdapter
 
         binding.ibScrollToBottom.setOnClickListener {
-            binding.rvChatMessagesList.scrollToPosition(0)
+            binding.rvChatMessagesList.smoothScrollToPosition(0)
         }
 
         binding.btnChatSend.setOnClickListener {
@@ -90,7 +91,7 @@ class FragmentChat : BaseFragment<FragmentChatBinding>() {
                     chatMessagesViewModel.uiState.collect {
                         when (it) {
                             is ChatMessagesViewModel.UiState.Loading -> showLoading(true)
-                            is ChatMessagesViewModel.StateSuccess.Messages -> launch {
+                            is ChatMessagesViewModel.Success.Messages -> launch {
                                 chatAdapter.submitData(
                                     it.data
                                 )
@@ -105,7 +106,7 @@ class FragmentChat : BaseFragment<FragmentChatBinding>() {
                 launch {
                     profileViewModel.cachedUserState.collect {
                         when (it) {
-                            is ProfileViewModel.StateSuccess.CachedUser -> {
+                            is ProfileViewModel.Success.CachedUser -> {
                                 chatAdapter.user = it.user
                                 chatMessagesViewModel.getMessages(userId = it.user.id)
                             }
@@ -126,7 +127,7 @@ class FragmentChat : BaseFragment<FragmentChatBinding>() {
     }
 
     override fun onRefresh() {
-        profileViewModel.getCachedUser(true)
+        fetchData()
     }
 
 }

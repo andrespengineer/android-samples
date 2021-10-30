@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import android.view.Window
 import com.social.R
 import com.social.base.BaseDialogFragment
-import com.social.presentation.post.ActivityCamera
-import com.social.presentation.post.ActivityCreatePost
+import com.social.presentation.camera.ActivityCamera
+import com.social.presentation.post.activities.ActivityCreatePost
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import com.social.databinding.DialogFragmentChooserBinding
 

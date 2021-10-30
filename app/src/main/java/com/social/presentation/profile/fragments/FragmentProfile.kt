@@ -1,5 +1,6 @@
-package com.social.presentation.profile
+package com.social.presentation.profile.fragments
 
+import android.graphics.Color
 import android.view.*
 import com.social.presentation.base.BaseFragment
 import com.social.data.models.ProfileModel
@@ -10,10 +11,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import coil.load
-import coil.request.CachePolicy
 import com.social.R
+import com.social.presentation.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -37,9 +39,10 @@ class FragmentProfile : BaseFragment<FragmentProfileBinding>() {
                     profileViewModel.cachedUserState.collect {
                         when (it) {
                             is ProfileViewModel.UiState.Loading -> showLoading(true)
-                            is ProfileViewModel.StateSuccess.CachedUser -> profileViewModel.getUserProfile(
-                                it.user.id
-                            )
+                            is ProfileViewModel.Success.CachedUser -> {
+                                updateProfileUi(it.user)
+                                profileViewModel.getUserProfile(it.user.id)
+                            }
                             else -> {
                                 showLoading(false)
                             }
@@ -47,10 +50,12 @@ class FragmentProfile : BaseFragment<FragmentProfileBinding>() {
                     }
                 }
                 launch {
-                    profileViewModel.userState.collect {
+                    profileViewModel.userState.collectLatest {
                         when (it) {
-                            is ProfileViewModel.UiState.Loading -> showLoading(true)
-                            is ProfileViewModel.StateSuccess.User -> {
+                            is ProfileViewModel.UiState.Loading -> {
+                                showLoading(true)
+                            }
+                            is ProfileViewModel.Success.User -> {
                                 updateProfileUi(it.user)
                             }
                             else -> {
@@ -69,14 +74,13 @@ class FragmentProfile : BaseFragment<FragmentProfileBinding>() {
 
     private fun updateProfileUi(data: ProfileModel) {
 
-        binding.tvProfileShotsCounter.text = data.drinkCount.toString()
-        binding.tvProfileFavoriteShot.text = data.favoriteDrink
-        binding.tvProfileFavoriteSong.text = data.favoriteSong
-        binding.tvProfileInstagram.text = data.instagram
-        binding.tvProfileUsername.text = data.username
-
-        binding.ivProfilePhoto.load(data.thumbnail){
-            memoryCacheKey(data.thumbnail + data.key)
+        with(binding) {
+            tvProfileShotsCounter.text = data.drinkCount.toString()
+            tvProfileFavoriteShot.text = data.favoriteDrink
+            tvProfileFavoriteSong.text = data.favoriteSong
+            tvProfileInstagram.text = data.instagram
+            tvProfileUsername.text = data.username
+            ivProfilePhoto.load(data.thumbnail)
         }
 
     }
@@ -86,7 +90,7 @@ class FragmentProfile : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun onRefresh() {
-        profileViewModel.getCachedUser(true)
+        fetchData()
     }
 
 }

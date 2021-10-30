@@ -18,8 +18,8 @@ class ShakeableFloatActionButton @JvmOverloads constructor(context: Context, att
     private var dX: Float = 0f
     private var dY: Float = 0f
     private var shake: Animation? = null
-    private var parentWidth: Float = 0.0f
-    private var parentHeight: Float = 0.0f
+    private var xMax: Float = 0.0f
+    private var yMax: Float = 0.0f
     private var isMoving: Boolean = false
     private var oldMovementX: Float = 0.0f
     private var oldMovementY: Float = 0.0f
@@ -28,16 +28,22 @@ class ShakeableFloatActionButton @JvmOverloads constructor(context: Context, att
     override fun onFinishInflate() {
         super.onFinishInflate()
 
-        val windowMetrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(context as Activity)
+        /*val windowMetrics = WindowMetricsCalculator.getOrCreate().computeCurrentWindowMetrics(context as Activity)
         val currentBounds = windowMetrics.bounds
-        parentWidth = currentBounds.width() * 1f
-        parentHeight = currentBounds.height() * 1f
+        xMax = currentBounds.width() * 1f
+        post {
+            if(yMax.compareTo(0.0f) == 0) {
+                yMax = y + height
+                setOnTouchListener(this)
+            }
+        }*/
 
-        setOnTouchListener(this)
+        setOnClickListener { animateFab() }
     }
 
     override fun onTouch(v: View?, event: MotionEvent): Boolean
     {
+
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 dX = x - event.rawX
@@ -46,9 +52,14 @@ class ShakeableFloatActionButton @JvmOverloads constructor(context: Context, att
                 oldMovementY = event.rawY + dY
             }
             MotionEvent.ACTION_MOVE -> {
-                if(event.rawX + dX > 0 && ((event.rawX + dX) + measuredWidth < parentWidth) && (event.rawY + dY > 0) && ((event.rawY + dY) + measuredHeight < parentHeight)) {
-                    animate().x(event.rawX + dX).y(event.rawY + dY).setDuration(0).start()
+                if (event.rawX + dX > 0 && ((event.rawX + dX) + measuredWidth < xMax) && (event.rawY + dY > 0) && ((event.rawY + dY) + measuredHeight < yMax)) {
+                    animate()
+                    .x(event.rawX + dX)
+                    .y(event.rawY + dY)
+                    .setDuration(0)
+                    .start()
                 }
+
                 if (abs((event.rawX + dX) - oldMovementX) > movementThreshold || abs((event.rawY + dY) - oldMovementY) > movementThreshold) {
                     isMoving = true
                 }

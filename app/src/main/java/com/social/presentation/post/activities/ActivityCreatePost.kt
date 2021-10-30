@@ -1,10 +1,9 @@
-package com.social.presentation.post
+package com.social.presentation.post.activities
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import coil.load
-import coil.request.CachePolicy
 import com.social.R
 import com.social.databinding.ActivityPostContentBinding
 import com.social.presentation.base.BaseActivity
@@ -87,7 +86,7 @@ class ActivityCreatePost : BaseActivity<ActivityPostContentBinding>(), View.OnCl
 
     private fun createConfirmationDialog(){
         DialogUtil.createCustomDialog(this, R.layout.custom_alert_dialog, resources.getString(R.string.back_message), onClickYes = {
-            finish()
+            super.onBackPressed()
         })
     }
     override fun onBackPressed() {

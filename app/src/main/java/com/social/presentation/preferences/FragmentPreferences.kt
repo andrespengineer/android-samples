@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.social.R
 import com.social.databinding.FragmentPreferencesBinding
-import com.social.presentation.home.ActivityStarter
+import com.social.presentation.home.activities.ActivityStarter
 import com.social.presentation.base.BaseFragment
 import com.social.presentation.auth.AuthViewModel
 import com.social.presentation.auth.FacebookAuthViewModel
@@ -16,6 +16,7 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -31,10 +32,14 @@ class FragmentPreferences : BaseFragment<FragmentPreferencesBinding>(), View.OnC
     private val facebookAuthViewModel: FacebookAuthViewModel by hiltNavGraphViewModels(R.id.nav_graph)
 
     override fun setup() {
-        binding.btnOptionsChangeEmail.setOnClickListener(this)
-        binding.btnOptionsChangePassword.setOnClickListener(this)
-        binding.btnOptionsHelp.setOnClickListener(this)
-        binding.btnOptionsLogout.setOnClickListener(this)
+
+        with(binding) {
+            btnOptionsChangeEmail.setOnClickListener(this@FragmentPreferences)
+            btnOptionsChangePassword.setOnClickListener(this@FragmentPreferences)
+            btnOptionsHelp.setOnClickListener(this@FragmentPreferences)
+            btnOptionsLogout.setOnClickListener(this@FragmentPreferences)
+        }
+
     }
 
     override fun collectViewModels() {
@@ -62,7 +67,7 @@ class FragmentPreferences : BaseFragment<FragmentPreferencesBinding>(), View.OnC
     private fun handleState(uiState: AuthViewModel.UiState){
 
         when(uiState){
-            is AuthViewModel.UiState.Complete -> {
+            is AuthViewModel.Success.SignOut -> {
                 val iFirstActivity = Intent(requireContext(), ActivityStarter::class.java)
                 iFirstActivity.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(iFirstActivity)

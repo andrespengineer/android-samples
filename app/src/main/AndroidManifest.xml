@@ -21,7 +21,7 @@
         tools:ignore="LockedOrientationActivity"
         android:allowBackup="true">
         <activity
-            android:name="com.social.presentation.home.ActivityStarter"
+            android:name="com.social.presentation.home.activities.ActivityStarter"
             android:configChanges="orientation|uiMode"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -39,7 +39,7 @@
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
         <activity
-            android:name="com.social.presentation.home.ActivityHome"
+            android:name="com.social.presentation.home.activities.ActivityHome"
             android:configChanges="uiMode"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
@@ -51,32 +51,32 @@
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
         <activity
-            android:name="com.social.presentation.post.ActivityCamera"
+            android:name="com.social.presentation.camera.ActivityCamera"
             android:configChanges="uiMode"
             android:screenOrientation="portrait"
             android:launchMode="singleTask" />
         <activity
-            android:name="com.social.presentation.post.ActivityCreatePost"
+            android:name="com.social.presentation.post.activities.ActivityCreatePost"
             android:configChanges="uiMode"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
         <activity
-            android:name="com.social.presentation.profile.ActivityViewProfile"
+            android:name="com.social.presentation.profile.activities.ActivityViewProfile"
             android:configChanges="uiMode"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
         <activity
-            android:name="com.social.presentation.post.ActivityEditPost"
+            android:name="com.social.presentation.post.activities.ActivityEditPost"
             android:configChanges="uiMode"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
         <activity
-            android:name="com.social.presentation.menu.ActivityMenuSearch"
+            android:name="com.social.presentation.menu.activities.ActivityMenuSearch"
             android:configChanges="uiMode"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
         <activity
-            android:name="com.social.presentation.playlist.ActivitySearchSongs"
+            android:name="com.social.presentation.playlist.activities.ActivitySearchSongs"
             android:configChanges="uiMode"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>

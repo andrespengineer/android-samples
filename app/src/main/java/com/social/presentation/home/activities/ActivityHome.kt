@@ -1,4 +1,4 @@
-package com.social.presentation.home
+package com.social.presentation.home.activities
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,12 +11,12 @@ import com.social.R
 import com.social.presentation.base.BaseActivity
 import com.social.databinding.ActivityHomeBinding
 import com.social.presentation.base.BaseFragment
-import com.social.presentation.chat.FragmentChat
+import com.social.presentation.chat.adapter.fragments.FragmentChat
 import com.social.presentation.controls.CachedFragmentFactory
-import com.social.presentation.feed.FragmentFeed
-import com.social.presentation.menu.FragmentMenu
-import com.social.presentation.playlist.FragmentPlaylist
-import com.social.presentation.profile.FragmentProfile
+import com.social.presentation.feed.fragments.FragmentFeed
+import com.social.presentation.menu.fragments.FragmentMenu
+import com.social.presentation.playlist.fragments.FragmentPlaylist
+import com.social.presentation.profile.fragments.FragmentProfile
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -69,8 +69,6 @@ class ActivityHome : BaseActivity<ActivityHomeBinding>(), OnDestinationChangedLi
             val fragment = getCurrentChildFragmentManager().findFragmentById(it.value?.id ?: 0)
             fragment == null
         }
-
-
     }
 
 

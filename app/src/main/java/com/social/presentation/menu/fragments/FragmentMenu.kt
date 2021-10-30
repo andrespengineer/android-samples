@@ -1,4 +1,4 @@
-package com.social.presentation.menu
+package com.social.presentation.menu.fragments
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import com.social.R
 import com.social.data.models.MenuModel
 import com.social.databinding.FragmentMenuBinding
 import com.social.presentation.base.BaseFragment
+import com.social.presentation.menu.activities.ActivityMenuSearch
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

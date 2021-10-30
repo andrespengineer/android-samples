@@ -1,4 +1,4 @@
-package com.social.presentation.home
+package com.social.presentation.home.activities
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -36,7 +36,7 @@ class ActivityStarter : BaseActivity<ActivityStarterBinding>(), View.OnClickList
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 profileViewModel.cachedUserState.collect {
                     when (it) {
-                        is ProfileViewModel.StateSuccess.CachedUser -> {
+                        is ProfileViewModel.Success.CachedUser -> {
                             val iHome = Intent(this@ActivityStarter, ActivityHome::class.java)
                             startActivity(iHome)
                             finish()
@@ -51,7 +51,7 @@ class ActivityStarter : BaseActivity<ActivityStarterBinding>(), View.OnClickList
     }
 
     override fun fetchData() {
-        profileViewModel.getCachedUser(true)
+        profileViewModel.getCachedUser()
     }
 
     override fun onClick(v: View) {

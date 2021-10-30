@@ -1,32 +1,31 @@
-package com.social.presentation.feed
+package com.social.presentation.feed.fragments
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import com.social.presentation.base.BaseFragment
 import com.social.presentation.controls.SpacesItemDecoration
 import com.social.databinding.FragmentFeedRecyclerViewBinding
-import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.*
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.social.R
+import com.social.presentation.base.BaseLoadStateAdapter
+import com.social.presentation.feed.FeedViewModel
 import com.social.presentation.feed.adapter.FeedAdapter
 import com.social.presentation.feed.adapter.FeedAdapterGrid
 import com.social.presentation.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class FragmentFeed : BaseFragment<FragmentFeedRecyclerViewBinding>(), FeedAdapterGrid.ItemClickListener {
-
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentFeedRecyclerViewBinding
         get() = FragmentFeedRecyclerViewBinding::inflate
@@ -37,7 +36,6 @@ class FragmentFeed : BaseFragment<FragmentFeedRecyclerViewBinding>(), FeedAdapte
     @Inject
     lateinit var gridAdapter: FeedAdapterGrid
 
-    @FragmentScoped
     @Inject
     lateinit var linearLayoutManager: LinearLayoutManager
 
@@ -50,8 +48,8 @@ class FragmentFeed : BaseFragment<FragmentFeedRecyclerViewBinding>(), FeedAdapte
     @Inject
     lateinit var gridLayoutManager: GridLayoutManager
 
-    private val feedViewModel: FeedViewModel by viewModels()
-    private val profileViewModel: ProfileViewModel by viewModels()
+    private val feedViewModel: FeedViewModel by hiltNavGraphViewModels(R.id.nav_graph)
+    private val profileViewModel: ProfileViewModel by hiltNavGraphViewModels(R.id.nav_graph)
 
     private val onBackPressedCallback = object : OnBackPressedCallback(false){
         override fun handleOnBackPressed() {
@@ -70,10 +68,7 @@ class FragmentFeed : BaseFragment<FragmentFeedRecyclerViewBinding>(), FeedAdapte
         }
 
         gridAdapter.itemClickListener = this
-
         listAdapter.fragmentManager = childFragmentManager
-
-
         binding.rvFeed.itemAnimator = itemAnimator
         binding.rvFeed.removeItemDecoration(itemDecoration)
         binding.rvFeed.addItemDecoration(itemDecoration)
@@ -91,7 +86,7 @@ class FragmentFeed : BaseFragment<FragmentFeedRecyclerViewBinding>(), FeedAdapte
                 launch {
                     feedViewModel.advState.collect {
                         when (it) {
-                            is FeedViewModel.StateSuccess.Ads -> {
+                            is FeedViewModel.Success.Ads -> {
                                 listAdapter.advertisementList.apply {
                                     clear()
                                     addAll(it.advertisements)
@@ -113,7 +108,7 @@ class FragmentFeed : BaseFragment<FragmentFeedRecyclerViewBinding>(), FeedAdapte
                 launch {
                     feedViewModel.feedState.collect {
                         when (it) {
-                            is FeedViewModel.StateSuccess.Feed -> {
+                            is FeedViewModel.Success.Feed -> {
                                 showLoading(false)
                                 launch {
                                     gridAdapter.submitData(it.feedData)
@@ -132,7 +127,10 @@ class FragmentFeed : BaseFragment<FragmentFeedRecyclerViewBinding>(), FeedAdapte
                 launch {
                     profileViewModel.cachedUserState.collect {
                         when(it) {
-                            is ProfileViewModel.StateSuccess.CachedUser -> feedViewModel.getFeed(it.user.id)
+                            is ProfileViewModel.Success.CachedUser -> {
+                                feedViewModel.getAds()
+                                feedViewModel.getFeed(it.user.id)
+                            }
                             else -> {
 
                             }
@@ -149,7 +147,8 @@ class FragmentFeed : BaseFragment<FragmentFeedRecyclerViewBinding>(), FeedAdapte
     override fun onItemClick(position: Int) {
         if(isFeedModeDefault()) {
             binding.rvFeed.layoutManager = linearLayoutManager
-            binding.rvFeed.adapter = listAdapter
+            binding.rvFeed.adapter = null
+            binding.rvFeed.adapter = listAdapter.withLoadStateFooter(BaseLoadStateAdapter(listAdapter))
             if(position != RecyclerView.NO_POSITION)
                 binding.rvFeed.scrollToPosition(position)
         }
@@ -158,11 +157,11 @@ class FragmentFeed : BaseFragment<FragmentFeedRecyclerViewBinding>(), FeedAdapte
     }
 
     override fun showLoading(show: Boolean) {
-        binding.pbFeedLoading.visibility = if(show) View.VISIBLE else View.GONE
+        binding.pbLayout.progressBar.visibility = if(show) View.VISIBLE else View.GONE
     }
 
     override fun onRefresh() {
-        profileViewModel.getCachedUser(true)
+        fetchData()
     }
 
     private fun isFeedModeDefault() : Boolean {

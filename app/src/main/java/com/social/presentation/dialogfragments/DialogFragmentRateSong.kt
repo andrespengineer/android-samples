@@ -34,20 +34,20 @@ class DialogFragmentRateSong : BaseDialogFragment<FragmentSongPopupBinding>(), V
 
     override fun setup() {
 
-        binding.PopupSongRatingBar.rating = item.rating
-        binding.PopupSongRatingBar.setOnRatingBarChangeListener { _, rating, _ ->
-            Toast.makeText(this@DialogFragmentRateSong.requireContext(), requireContext().resources.getString(R.string.popup_song_rated).plus( " ").plus(rating.toString()), Toast.LENGTH_SHORT).show()
+        with(binding){
+            PopupSongRatingBar.rating = item.rating
+            PopupSongRatingBar.setOnRatingBarChangeListener { _, rating, _ ->
+                Toast.makeText(this@DialogFragmentRateSong.requireContext(), requireContext().resources.getString(R.string.popup_song_rated).plus( " ").plus(rating.toString()), Toast.LENGTH_SHORT).show()
+            }
+
+            ivPopupSongImage.load(item.image)
+            tvPopupSongArtist.text = item.artist
+            tvPopupSongName.text = item.name
+            btnPopupSongSuggestion.setOnClickListener(this@DialogFragmentRateSong)
+            btnPopupSongListenSpotify.setOnClickListener(this@DialogFragmentRateSong)
+            btnPopupSongBack.setOnClickListener(this@DialogFragmentRateSong)
         }
 
-        binding.ivPopupSongImage.load(item.image){
-            memoryCacheKey(item.image + item.key)
-        }
-
-        binding.tvPopupSongArtist.text = item.artist
-        binding.tvPopupSongName.text = item.name
-        binding.btnPopupSongSuggestion.setOnClickListener(this)
-        binding.btnPopupSongListenSpotify.setOnClickListener(this)
-        binding.btnPopupSongBack.setOnClickListener(this)
     }
 
 
@@ -84,8 +84,6 @@ class DialogFragmentRateSong : BaseDialogFragment<FragmentSongPopupBinding>(), V
             }
         }
     }
-
-
 
     companion object {
         fun newInstance(): DialogFragmentRateSong {

@@ -17,14 +17,9 @@ class FeedAdapterGridViewHolder (val binding: FragmentFeedRecyclerViewItemGridMo
         binding.root.setOnClickListener(this)
     }
 
-
     override fun onBind(model: FeedModel) {
         super.onBind(model)
-
-        binding.ivFeedGridViewPreview.load(model.image){
-            this.size(200, 200)
-            this.memoryCacheKey( model.image + model.key)
-        }
+        binding.ivFeedGridViewPreview.load(model.image)
     }
 
     override fun onClick(view: View) {

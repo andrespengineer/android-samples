@@ -18,11 +18,12 @@ class PlaylistAdapterViewHolder(private val binding: FragmentPlaylistItemsBindin
     override fun onBind(model: PlaylistModel) {
         super.onBind(model)
 
-        binding.tvPlaylistSongArtist.text = model.artist
-        binding.tvPlaylistSongName.text = model.name
-        binding.ivPlaylistSongImage.load(model.image){
-            memoryCacheKey(model.image + model.key)
+        with(binding) {
+            tvPlaylistSongArtist.text = model.artist
+            tvPlaylistSongName.text = model.name
+            ivPlaylistSongImage.load(model.image)
         }
+
     }
 
     override fun onClick(v: View) {

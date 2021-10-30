@@ -25,21 +25,24 @@ class DialogFragmentReport : BaseDialogFragment<CustomReportDialogBinding>(), Vi
     }
 
     override fun setup() {
-        binding.rbFirst.setOnClickListener(this)
-        binding.rbSecond.setOnClickListener(this)
-        binding.rbThird.setOnClickListener(this)
 
-        binding.btnSend.setOnClickListener {
-            Toast.makeText(requireContext(), requireContext().resources.getString(R.string.action_report_success), Toast.LENGTH_LONG).show()
+        with(binding) {
+            rbFirst.setOnClickListener(this@DialogFragmentReport)
+            rbSecond.setOnClickListener(this@DialogFragmentReport)
+            rbThird.setOnClickListener(this@DialogFragmentReport)
+            btnSend.setOnClickListener(this@DialogFragmentReport)
+            btnCancel.setOnClickListener(this@DialogFragmentReport)
         }
-        binding.btnCancel.setOnClickListener { dismiss() }
+
     }
 
     private fun setChecked(view: RadioButton) {
 
-        binding.rbFirst.isChecked = false
-        binding.rbSecond.isChecked = false
-        binding.rbThird.isChecked = false
+        with(binding) {
+            rbFirst.isChecked = false
+            rbSecond.isChecked = false
+            rbThird.isChecked = false
+        }
 
         view.isChecked = true
 
@@ -57,7 +60,20 @@ class DialogFragmentReport : BaseDialogFragment<CustomReportDialogBinding>(), Vi
     }
 
     override fun onClick(v: View) {
-        setChecked(v as RadioButton)
+        with(binding) {
+            when(v.id) {
+                rbFirst.id,rbSecond.id, rbThird.id -> setChecked(v as RadioButton)
+                btnSend.id -> {
+                    Toast.makeText(requireContext(), requireContext().resources.getString(R.string.action_report_success), Toast.LENGTH_LONG).show()
+                    dismiss()
+                }
+                btnCancel.id -> {
+                    dismiss()
+                }
+
+            }
+        }
+
     }
 
     companion object {

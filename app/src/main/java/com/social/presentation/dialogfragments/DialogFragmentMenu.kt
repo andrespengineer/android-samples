@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.RatingBar
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.social.R
 import com.social.base.BaseDialogFragment
 import com.social.data.models.MenuModel
@@ -26,15 +27,19 @@ class DialogFragmentMenu : BaseDialogFragment<DialogFragmentMenuBinding>(), View
 
     override fun setup() {
 
-        binding.PopupMenuRatingBar.rating = item.rating
-        binding.PopupMenuRatingBar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { _, rating, _ ->
-            Toast.makeText(requireContext(), requireContext().resources.getString(R.string.popup_menu_rated).plus(" ").plus(rating.toString()), Toast.LENGTH_SHORT).show()
+        with(binding){
+            PopupMenuRatingBar.rating = item.rating
+            PopupMenuRatingBar.onRatingBarChangeListener = RatingBar.OnRatingBarChangeListener { _, rating, _ ->
+                Toast.makeText(requireContext(), requireContext().resources.getString(R.string.popup_menu_rated).plus(" ").plus(rating.toString()), Toast.LENGTH_SHORT).show()
+            }
+
+            tvPopupMenuItemName.text = item.name
+            tvPopupMenuItemIngredients.text = item.ingredients
+            tvPopupMenuItemIngredients.isVisible = item.ingredients.isEmpty().not()
+            btnPopupMenuAddToCart.setOnClickListener(this@DialogFragmentMenu)
+            btnPopupMenuBack.setOnClickListener(this@DialogFragmentMenu)
         }
-        binding.tvPopupMenuItemName.text = item.name
-        binding.tvPopupMenuItemIngredients.text = item.ingredients
-        binding.tvPopupMenuItemIngredients.visibility = if(item.ingredients.isEmpty()) View.GONE else View.VISIBLE
-        binding.btnPopupMenuAddToCart.setOnClickListener(this)
-        binding.btnPopupMenuBack.setOnClickListener(this)
+
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

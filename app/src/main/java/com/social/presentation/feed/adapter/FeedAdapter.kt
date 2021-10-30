@@ -10,8 +10,8 @@ import com.social.databinding.FragmentFeedAdvertisingContainerBinding
 import com.social.databinding.FragmentFeedRecyclerViewItemBinding
 import com.social.presentation.dialogfragments.DialogFragmentReport
 import androidx.fragment.app.FragmentManager
-import com.social.presentation.feed.adapter.viewholder.FeedAdapterHeaderViewHolder
 import com.social.presentation.feed.adapter.viewholder.FeedAdapterViewHolder
+import com.social.presentation.feed.adapter.viewholder.FeedAdvertisementViewHolder
 
 class FeedAdapter(val customReportDialog: DialogFragmentReport) : BasePagingAdapter<FeedModel, BaseViewHolder<FeedModel, *>>(FeedModel.DIFF_ITEM_CALLBACK) {
 
@@ -25,7 +25,7 @@ class FeedAdapter(val customReportDialog: DialogFragmentReport) : BasePagingAdap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<FeedModel, *> {
         return if (viewType == ITEM_TYPE_HEADER) {
-            FeedAdapterHeaderViewHolder(FragmentFeedAdvertisingContainerBinding.inflate(LayoutInflater.from(parent.context), parent, false), this)
+            FeedAdvertisementViewHolder(FragmentFeedAdvertisingContainerBinding.inflate(LayoutInflater.from(parent.context), parent, false), this)
         } else {
             FeedAdapterViewHolder(FragmentFeedRecyclerViewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false), this)
         }

@@ -1,4 +1,4 @@
-package com.social.presentation.playlist
+package com.social.presentation.playlist.activities
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,18 +10,19 @@ import com.social.presentation.dialogfragments.DialogFragmentSuggestSong
 import com.social.presentation.profile.ProfileViewModel
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.social.hilt.RecyclerViewModule.Companion.ACTIVITY_SCOPED
+import com.social.presentation.base.BaseLoadStateAdapter
+import com.social.presentation.playlist.PlaylistViewModel
 import com.social.presentation.playlist.adapter.SearchSongsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Named
 
 
 @AndroidEntryPoint
@@ -37,7 +38,6 @@ class ActivitySearchSongs : BaseActivity<ActivitySearchSongsBinding>(), SearchVi
     lateinit var dialogFragmentSuggestSong: DialogFragmentSuggestSong
 
     @Inject
-    @Named(ACTIVITY_SCOPED)
     lateinit var linearLayoutManager: LinearLayoutManager
 
     @Inject
@@ -54,11 +54,14 @@ class ActivitySearchSongs : BaseActivity<ActivitySearchSongsBinding>(), SearchVi
         }
 
         searchSongsAdapter.fragmentManager = supportFragmentManager
-        binding.rvPlaylist.layoutManager = linearLayoutManager
-        binding.rvPlaylist.itemAnimator = itemAnimator
-        binding.rvPlaylist.adapter = searchSongsAdapter
-        binding.etSearchSongs.setOnQueryTextListener(this)
-        binding.btnSearchSongSuggest.setOnClickListener(this)
+        with(binding) {
+            rvPlaylist.layoutManager = linearLayoutManager
+            rvPlaylist.itemAnimator = itemAnimator
+            rvPlaylist.adapter = searchSongsAdapter.withLoadStateFooter(BaseLoadStateAdapter(searchSongsAdapter))
+            etSearchSongs.setOnQueryTextListener(this@ActivitySearchSongs)
+            btnSearchSongSuggest.setOnClickListener(this@ActivitySearchSongs)
+        }
+
     }
 
     override fun collectViewModels() {
@@ -71,7 +74,7 @@ class ActivitySearchSongs : BaseActivity<ActivitySearchSongsBinding>(), SearchVi
                                 showLoading(true)
                                 showNoResults(false)
                             }
-                            is PlaylistViewModel.StateSuccess.Playlist -> {
+                            is PlaylistViewModel.Success.Playlist -> {
                                 launch {
                                     searchSongsAdapter.submitData(it.playlist)
                                 }
@@ -87,7 +90,7 @@ class ActivitySearchSongs : BaseActivity<ActivitySearchSongsBinding>(), SearchVi
                 launch {
                     profileViewModel.cachedUserState.collect {
                         when (it) {
-                            is ProfileViewModel.StateSuccess.CachedUser -> {
+                            is ProfileViewModel.Success.CachedUser -> {
                                 user = it.user
                                 onQueryTextChange("")
                             }
@@ -100,20 +103,23 @@ class ActivitySearchSongs : BaseActivity<ActivitySearchSongsBinding>(), SearchVi
     }
 
     override fun fetchData() {
-        profileViewModel.getCachedUser(true)
+        profileViewModel.getCachedUser()
     }
 
     private fun showNoResults(show: Boolean){
-        binding.btnSearchSongSuggest.visibility = if(show) View.VISIBLE else View.GONE
-        binding.tvSearchSongsNoResult.visibility = if(show) View.VISIBLE else View.GONE
+        binding.btnSearchSongSuggest.isVisible = show
+        binding.tvSearchSongsNoResult.isVisible = show
     }
 
     override fun onClick(v: View) {
-        when(v.id) {
-            R.id.btnSearchSongSuggest -> {
-                dialogFragmentSuggestSong.show(supportFragmentManager, DialogFragmentSuggestSong::class.simpleName)
+        with(binding){
+            when(v.id) {
+                btnSearchSongSuggest.id -> {
+                    dialogFragmentSuggestSong.show(supportFragmentManager, DialogFragmentSuggestSong::class.simpleName)
+                }
             }
         }
+
     }
 
     override fun onQueryTextSubmit(query: String): Boolean {
@@ -127,6 +133,6 @@ class ActivitySearchSongs : BaseActivity<ActivitySearchSongsBinding>(), SearchVi
     }
 
     override fun onRefresh() {
-        profileViewModel.getCachedUser(true)
+        fetchData()
     }
 }

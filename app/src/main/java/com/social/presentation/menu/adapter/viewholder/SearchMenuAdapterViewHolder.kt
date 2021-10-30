@@ -1,6 +1,7 @@
 package com.social.presentation.menu.adapter.viewholder
 
 import android.view.View
+import androidx.core.view.isVisible
 import com.social.presentation.base.BaseViewHolder
 import com.social.data.models.MenuModel
 import com.social.databinding.FragmentSearchMenuItemsBinding
@@ -15,11 +16,14 @@ class SearchMenuAdapterViewHolder(private val binding: FragmentSearchMenuItemsBi
 
     override fun onBind(model: MenuModel) {
         super.onBind(model)
-        binding.tvSearchMenuIngredients.visibility = if(model.ingredients.isEmpty()) View.GONE else View.VISIBLE
-        binding.tvSearchMenuIngredients.text = model.ingredients
-        binding.tvSearchMenuName.text = model.name
-        binding.tvSearchMenuPrice.text = model.price.toString()
-        binding.tvSearchMenuRating.text = model.rating.toString()
+        with(binding){
+            tvSearchMenuIngredients.isVisible = model.ingredients.isEmpty().not()
+            tvSearchMenuIngredients.text = model.ingredients
+            tvSearchMenuName.text = model.name
+            tvSearchMenuPrice.text = model.price.toString()
+            tvSearchMenuRating.text = model.rating.toString()
+        }
+
     }
 
     override fun onClick(v: View) {
