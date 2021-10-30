@@ -17,9 +17,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 class RetrofitModule {
-    companion object {
-        const val RETROFIT_API_CLIENT = "RETROFIT_API_CLIENT"
-    }
 
     @Provides
     fun providesGsonConverterFactory(): GsonConverterFactory {

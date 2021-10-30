@@ -1,6 +1,6 @@
 package com.social.hilt
 
-import android.app.Activity
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,6 +14,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Named
 
 @InstallIn(ActivityComponent::class, FragmentComponent::class)
@@ -24,30 +25,23 @@ class RecyclerViewModule {
         const val LAYOUT_MANAGER_VERTICAL_REVERSED = "LAYOUT_MANAGER_VERTICAL_REVERSED"
         const val SPAN_COUNT = "SPAN_COUNT"
         const val SPACING = "SPACING"
-        const val ACTIVITY_SCOPED = "ACTIVITY_SCOPED"
     }
 
     @Provides
     @Named(LAYOUT_MANAGER_VERTICAL_REVERSED)
-    fun provideLinearLayoutManagerVRForFragment(fragment: Fragment) : LinearLayoutManager {
-        return LinearLayoutManager(fragment.requireContext(), RecyclerView.VERTICAL, true)
+    fun provideLinearLayoutManagerVRForFragment(@ActivityContext context: Context) : LinearLayoutManager {
+        return LinearLayoutManager(context, RecyclerView.VERTICAL, true)
     }
 
     @Provides
-    fun provideLinearLayoutManagerForFragment(fragment: Fragment) : LinearLayoutManager {
-        return LinearLayoutManager(fragment.requireContext(), RecyclerView.VERTICAL, false)
-    }
-
-    @Provides
-    @Named(ACTIVITY_SCOPED)
-    fun provideLinearLayoutManagerForActivity(activity: Activity) : LinearLayoutManager {
-        return LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+    fun provideLinearLayoutManagerForFragment(@ActivityContext context: Context) : LinearLayoutManager {
+        return LinearLayoutManager(context, RecyclerView.VERTICAL, false)
     }
 
     @Provides
     @Named(SPACING)
-    fun provideGridViewSpacing(fragment: Fragment) : Int {
-        return fragment.requireContext().resources.getDimensionPixelSize(R.dimen.grid_view_spacing_timeline)
+    fun provideGridViewSpacing(@ActivityContext context: Context) : Int {
+        return context.resources.getDimensionPixelSize(R.dimen.grid_view_spacing_timeline)
     }
 
     @Provides
@@ -62,8 +56,8 @@ class RecyclerViewModule {
     }
 
     @Provides
-    fun provideGridLayoutManager(fragment: Fragment) : GridLayoutManager {
-        return GridLayoutManager(fragment.requireContext(), FeedAdapterGrid.NUMBER_OF_COLUMNS)
+    fun provideGridLayoutManager(@ActivityContext context: Context) : GridLayoutManager {
+        return GridLayoutManager(context, FeedAdapterGrid.NUMBER_OF_COLUMNS)
     }
 
     @Provides
