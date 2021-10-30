@@ -18,11 +18,23 @@ import javax.inject.Inject
 @HiltViewModel
 class FeedViewModel @Inject constructor(private val apiClient: RetrofitApiClient, private val feedPagingDataSource: FeedPagingDataSource): ViewModel() {
 
+    companion object {
+        private const val TIMEOUT = 5000L
+    }
+
     private val _feedState = MutableStateFlow<UiState>(UiState.Loading)
-    val feedState: StateFlow<UiState> = _feedState
+    val feedState: StateFlow<UiState> = _feedState.stateIn(
+        initialValue = UiState.Loading,
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = TIMEOUT)
+    )
 
     private val _advState = MutableStateFlow<UiState>(UiState.Loading)
-    val advState: StateFlow<UiState> = _advState
+    val advState: StateFlow<UiState> = _advState.stateIn(
+        initialValue = UiState.Loading,
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = TIMEOUT)
+    )
 
     private val feedFlow = Pager(config = PagingConfig(pageSize = 10)) {
         feedPagingDataSource
@@ -32,40 +44,37 @@ class FeedViewModel @Inject constructor(private val apiClient: RetrofitApiClient
         viewModelScope.launch {
             apiClient.getAdvertisements()
                 .catch { exception -> _advState.value =
-                    StateFailed.RequestError(exception)
+                    Failed.RequestError(exception)
                 }
-                .collect { _advState.value = StateSuccess.Ads(advertisements = it) }
+                .collect { _advState.value = Success.Ads(advertisements = it) }
         }
     }
+
     fun getFeed(userId: Long) {
 
         feedPagingDataSource.userId = userId
 
-        _feedState.value = UiState.Loading
-
         viewModelScope.launch {
-
             launch {
                 feedFlow.catch { exception -> _feedState.value =
-                    StateFailed.RequestError(exception)
-                }.collectLatest { _feedState.value = StateSuccess.Feed(feedData = it) }
+                    Failed.RequestError(exception)
+                }.collectLatest { _feedState.value = Success.Feed(feedData = it) }
             }
         }
     }
-
 
     sealed class UiState {
         object Loading : UiState()
     }
 
-    sealed class StateSuccess : UiState() {
-        data class Feed(val feedData: PagingData<FeedModel>) : StateSuccess()
-        data class Ads(val advertisements: List<AdvertiseModel>) : StateSuccess()
+    sealed class Success : UiState() {
+        data class Feed(val feedData: PagingData<FeedModel>) : Success()
+        data class Ads(val advertisements: List<AdvertiseModel>) : Success()
 
     }
 
-    sealed class StateFailed : UiState() {
-        data class RequestError(val throwable: Throwable) : StateFailed()
+    sealed class Failed : UiState() {
+        data class RequestError(val throwable: Throwable) : Failed()
     }
 
 }

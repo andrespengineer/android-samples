@@ -14,35 +14,52 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(private val apiClient: RetrofitApiClient, private val preferencesDataSource: PreferencesDataSource): ViewModel() {
 
+    companion object {
+        private const val TIMEOUT = 5000L
+    }
+
     private val _cachedUserState = MutableStateFlow<UiState>(UiState.Loading)
-    val cachedUserState: StateFlow<UiState> = _cachedUserState
+
+    val cachedUserState: StateFlow<UiState> = _cachedUserState.stateIn(
+        initialValue = UiState.Loading,
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = TIMEOUT)
+    )
 
     private val _userState = MutableStateFlow<UiState>(UiState.Loading)
-    val userState: StateFlow<UiState> = _userState
+    val userState: StateFlow<UiState> = _userState.stateIn(
+        initialValue = UiState.Loading,
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = TIMEOUT)
+    )
+
+    private val cachedUserFlow = flowOf(fetchCachedUser())
 
     fun getUserProfile(userId: Long) {
-        _userState.value = UiState.Loading
         viewModelScope.launch {
             apiClient.getProfile(userId)
-                .catch { _userState.value = StateFailed.RequestError }
+                .catch { exception ->
+                    _userState.value = UiState.Complete
+                    _userState.value = Failed.RequestError(exception)
+                }
                 .collect {
+                    _userState.value = UiState.Complete
                     updateCachedUser(user = it)
-                    _userState.value = if (it != null) StateSuccess.User(it) else StateFailed.RequestError
+                    _userState.value = if (it != null) Success.User(it) else Success.UserNotFound
                 }
         }
     }
 
-    fun getCachedUser(refresh: Boolean = false) {
-        if(refresh)
-            _cachedUserState.value = UiState.Loading
-
+    fun getCachedUser() {
         viewModelScope.launch {
-            flowOf(
-                fetchCachedUser()
-            ).collect {
+            cachedUserFlow.catch { exception ->
+                _cachedUserState.value = UiState.Complete
+                _cachedUserState.value = Failed.RequestError(exception)
+            }.collect {
+                _cachedUserState.value = UiState.Complete
                 _cachedUserState.value = if (it == null) {
-                    StateFailed.CachedUserNotFound
-                } else StateSuccess.CachedUser(it)
+                    Success.CachedUserNotFound
+                } else Success.CachedUser(it)
             }
         }
     }
@@ -56,27 +73,27 @@ class ProfileViewModel @Inject constructor(private val apiClient: RetrofitApiCli
     }
 
     private fun updateCachedUser(user: ProfileModel?){
-
         if(fetchCachedUser()?.id == user?.id ?: return)
             saveCachedUser(user)
     }
 
     fun saveCachedUser(user: ProfileModel){
-        _cachedUserState.value = UiState.Loading
         preferencesDataSource.saveData(ProfileModel.PROFILE, ProfileModel.PROFILE, user, object: TypeToken<ProfileModel>() {}.type)
     }
 
     sealed class UiState {
         object Loading : UiState()
+        object Complete : UiState()
     }
 
-    sealed class StateSuccess : UiState() {
-        data class User(val user: ProfileModel) : StateSuccess()
-        data class CachedUser(val user: ProfileModel) : StateSuccess()
+    sealed class Success : UiState() {
+        data class User(val user: ProfileModel) : Success()
+        data class CachedUser(val user: ProfileModel) : Success()
+        object UserNotFound : Failed()
+        object CachedUserNotFound : Failed()
     }
 
-    sealed class StateFailed : UiState() {
-        object RequestError : StateFailed()
-        object CachedUserNotFound : StateFailed()
+    sealed class Failed : UiState() {
+        data class RequestError(val throwable: Throwable) : Failed()
     }
 }

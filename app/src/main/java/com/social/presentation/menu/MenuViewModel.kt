@@ -8,22 +8,30 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.social.data.clients.api.RetrofitApiClient
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MenuViewModel @Inject constructor(private val apiClient: RetrofitApiClient, private val menuPagingDataSource: MenuPagingDataSource): ViewModel() {
+class MenuViewModel @Inject constructor(private val menuPagingDataSource: MenuPagingDataSource): ViewModel() {
+
+    companion object {
+        private const val TIMEOUT = 5000L
+    }
 
     private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
-    val uiState: StateFlow<UiState> = _uiState
 
-    private val pager = Pager(config = PagingConfig(pageSize = 25, prefetchDistance = 20))
+    val uiState: StateFlow<UiState> = _uiState.stateIn(
+        initialValue = UiState.Loading,
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = TIMEOUT)
+    )
+
+    private val menuFlow = Pager(config = PagingConfig(pageSize = 10))
     {
         menuPagingDataSource
-    }
+    }.flow.cachedIn(viewModelScope)
 
     fun getMenu(userId: Long, menuCategory: Int, query: String) {
 
@@ -31,11 +39,15 @@ class MenuViewModel @Inject constructor(private val apiClient: RetrofitApiClient
         menuPagingDataSource.category = menuCategory
         menuPagingDataSource.query = query
 
-        _uiState.value = UiState.Loading
         viewModelScope.launch {
-            pager.flow.cachedIn(viewModelScope)
-                .catch { exception -> _uiState.value = Failed.RequestError(exception) }
-                .collectLatest { _uiState.value = Success.Menu(menu = it) }
+            menuFlow.catch { exception ->
+                    _uiState.value = UiState.Complete
+                    _uiState.value = Failed.RequestError(exception)
+                 }
+                .collectLatest {
+                    _uiState.value = UiState.Complete
+                    _uiState.value = Success.Menu(menu = it)
+                }
         }
     }
 
@@ -50,7 +62,6 @@ class MenuViewModel @Inject constructor(private val apiClient: RetrofitApiClient
     }
 
     sealed class Failed : UiState() {
-        data class NetworkError(val throwable: Throwable) : Failed()
         data class RequestError(val throwable: Throwable) : Failed()
     }
 }
