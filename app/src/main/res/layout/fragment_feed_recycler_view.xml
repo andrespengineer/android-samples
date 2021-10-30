@@ -7,8 +7,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFeed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scrollbarThumbVertical="@android:color/transparent"
         android:scrollbars="vertical"
         tools:listitem="@layout/fragment_feed_recycler_view_item_grid_mode"
@@ -17,12 +17,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/pbFeedLoading"
+    <include
+        android:id="@+id/pbLayout"
+        layout="@layout/common_circular_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:indeterminateTintMode="src_atop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

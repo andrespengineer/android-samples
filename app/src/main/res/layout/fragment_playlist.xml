@@ -72,6 +72,16 @@
             app:layout_constraintTop_toBottomOf="@id/tvPlaylistSongLiveName"
             app:layout_constraintBottom_toTopOf="@id/tvPlaylist_last_five"/>
 
+        <include
+            android:id="@+id/pbLayout"
+            layout="@layout/common_circular_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
         <TextView
             android:id="@+id/tvPlaylist_last_five"
             android:layout_width="wrap_content"
@@ -90,7 +100,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            tools:listitem="@layout/fragment_playlist_items"
             android:id="@+id/rvPlaylist"
             android:nestedScrollingEnabled="false"
             app:layout_constraintStart_toStartOf="parent"

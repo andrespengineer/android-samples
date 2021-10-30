@@ -26,8 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/etSearchSongs"
         app:layout_constraintTop_toTopOf="@id/etSearchSongs"
-        app:layout_constraintBottom_toBottomOf="@id/etSearchSongs"
-        app:tint="?attr/colorPrimaryVariant" />
+        app:layout_constraintBottom_toBottomOf="@id/etSearchSongs" />
 
 
     <androidx.recyclerview.widget.RecyclerView

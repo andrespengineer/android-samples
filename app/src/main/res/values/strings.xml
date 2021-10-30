@@ -164,5 +164,7 @@
     <string name="search_create_playlist">Crear lista de reproduccion</string>
     <string name="my_personal_playlist">Mis listas de reproduccion</string>
     <string name="profile_achievements">Logros</string>
+    <string name="cart">Carrito</string>
+    <string name="retry">Intentar de nuevo</string>
 
 </resources>

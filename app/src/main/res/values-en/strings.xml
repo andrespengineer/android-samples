@@ -150,5 +150,7 @@
     <string name="search_create_playlist">Create new Playlist</string>
     <string name="my_personal_playlist">My Personal Playlists</string>
     <string name="profile_achievements">Achievements</string>
+    <string name="cart">Cart</string>
+    <string name="retry">Retry</string>
 
 </resources>
